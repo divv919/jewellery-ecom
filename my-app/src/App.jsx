@@ -3,12 +3,12 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Categories from './components/Categories'
 import Footer from './components/Footer'
-import Carousel from './components/Carousel'
+import Slider from './components/Carousel/Slider'
 function App() {
   return (
     <>
     <Navbar />
-    <Carousel />
+    <Slider />
     <Categories />
     <Footer />
     </>

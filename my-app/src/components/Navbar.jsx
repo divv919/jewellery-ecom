@@ -1,4 +1,4 @@
-import staticData from "../assets/static-data"
+import staticData from "../assets/staticData"
 function Navbar(){
     return(
         <>
