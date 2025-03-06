@@ -1,0 +1,69 @@
+.black-bg{
+        display: flex;
+        position : fixed;
+        justify-content: center;
+        align-items: center;
+        margin: -8px;
+        background-color: rgba(0,0,0,0.6);
+        width: 100vw;
+        height: 100vh;
+        z-index: 10000
+}
+
+.popup{
+        background-color: white;
+        min-width: 350px;
+        max-width: 350px;
+        position: absolute;
+        height : 420px;
+        z-index: 100000;
+        border-radius: 8px;
+        padding: 20px;
+        display: grid;
+        grid-template-rows : auto auto;
+}
+.popup h1{
+    position: absolute;
+    left : 5%;
+    color:orange
+}
+
+.closeButton{
+        z-index : 1000000;
+        font-size :25px;
+        position:absolute;
+        left: 90%;
+        top: 2.5%;
+        cursor: pointer;
+      
+}
+
+#contactPopupForm{
+    display: grid;
+    grid-template-rows: auto auto auto ;
+    gap:10px;
+    top:px;
+    font-size: 16px;
+    position: absolute;
+    top: 20%;
+    left : 5%;
+}
+
+#contactPopupForm input{
+    height: 25px;
+    font-size: 16px;
+    max-width: 350px;
+    min-width: 350px;
+}
+  
+#contactPopupForm textarea{
+    font-size: 16px;
+    min-height: 100px;
+    max-height: 100px;
+    max-width: 350px;
+    min-width: 350px;
+  }
+
+.submitButton{
+    padding-bottom: 30px;
+}

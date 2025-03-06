@@ -1,9 +1,10 @@
+import staticData from "../assets/staticData";
 function Footer(){
     return (
         <footer>
             <div className="upper">
             <div className="col">
-            <p>Useful Links</p>
+            <h3>Useful Links</h3>
             <a>Delivery Info</a>
             <a>Delivery Info</a>
             <a>Delivery Info</a>
@@ -11,7 +12,7 @@ function Footer(){
             <a>Delivery Info</a>
             </div>
             <div className="col">
-            <p>About Us</p>
+            <h3>About Us</h3>
             <a>Blogs</a>
             <a>Blogs</a>
             <a>Blogs</a>
@@ -19,16 +20,12 @@ function Footer(){
             <a>Blogs</a>
             </div> 
             <div className="col">
-            <p>Contact Us</p>
-            <a>E-mail</a>
-            <a>E-mail</a>
-            <a>E-mail</a>
-            <a>E-mail</a>
-            <a>E-mail</a>
+            <h3>Contact Us</h3>
+            <a>{staticData.phoneNumber}</a>
+            <a>Email</a>
+            <a>{staticData.address}</a>
             </div>
-            <div className="col">
-                <img alt="Photo" src="https://www.tanishq.co.in/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw13b9f54e/images/footer/tanishq-app-newqr.png"/>
-            </div>
+            
             </div>
         </footer>
     )

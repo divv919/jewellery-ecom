@@ -2,17 +2,17 @@ export default [
     {
     title : "First Slide",
         description : "This is the first image",
-        urls : "https://t4.ftcdn.net/jpg/01/26/92/23/360_F_126922352_EmYCsPhTG1Dww3o2mnfb6Y3C4ex1u7Vz.webp"
+        urls : "https://images.squarespace-cdn.com/content/v1/5535c7f4e4b07fe01de70f4b/1464320671031-P0SNKCPIX63PFEICW0V0/Home-Carousel-5_2.jpg?format=1500w"
     },
     {
         title : "Second Slide",
         description : "This is the second image",
-        urls : "https://media.istockphoto.com/id/157375066/photo/banana.jpg?s=612x612&w=0&k=20&c=3v7si4IY-VZRIiUnG2fUodH2kIF4ipt06YnrtBCF3nc="
+        urls : "https://images.squarespace-cdn.com/content/v1/5535c7f4e4b07fe01de70f4b/1436936831481-4VUJZREY6C79S8YS6APL/Home-Carousel-2.jpg?format=1500w"
     },
     {
         title : "Third Slide",
         description : "This is the third image",
-        urls : "https://t4.ftcdn.net/jpg/00/70/94/63/240_F_70946377_VJXdpJqld6XOsOTO6lt95ieZSxGO0faM.jpg"
+        urls : "https://images.squarespace-cdn.com/content/v1/5535c7f4e4b07fe01de70f4b/1436936869886-SOFIVPBTQ83SJX55FXE6/Home-Carousel-1.jpg"
     }
 ]
 
