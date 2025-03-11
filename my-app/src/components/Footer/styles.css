@@ -1,0 +1,41 @@
+
+.upper{
+  
+    display: grid;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* margin: -8px; */
+    margin-top: 50px;
+
+    width: 100%;
+    background-color: rgb(208, 97, 0);
+    grid-template-columns: auto auto auto auto;
+    padding: 10px;
+   }
+   
+   .col{
+     font-size: 20px;
+     margin: 32px;
+     display: grid;
+     gap : 16px;
+     padding-left: 16px;
+   }
+   .col img{
+     height: 250px;
+   }
+   
+   .col a{
+     font-size: larger;
+     /* background-color: red; */
+     width: 120px;
+     color: white;
+     cursor: pointer;
+   }
+   
+   .col a:hover{
+     transition: all 0.3s;
+     color: black;
+   }
+   
+   

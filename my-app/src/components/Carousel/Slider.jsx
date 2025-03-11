@@ -1,34 +1,32 @@
-import { useEffect, useState } from "react";
-import Arrows from "./Arrows";
-import Dots from "./Dots";
-import SliderContent from "./SliderContent";
-import sliderImage from "../../assets/sliderImage";
-import "./slider.css"
+import Arrows from './Arrows'
+import SliderContent from './SliderContent'
+import './slider.css'
+import { useEffect, useState } from 'react'
 
-
-
-const len = sliderImage.length - 1;
-function Slider(){
-    const [activeIndex,setActiveIndex] = useState(0);
-
+function Slider({sliderImage}){
     useEffect(()=>{
-        const interval = setInterval(()=>{
-            setActiveIndex(prev=> prev === len?0 : activeIndex+1)
-        },5000)
-        return ()=> clearInterval(interval);
-    },[activeIndex])
+        const stopInterval = setInterval(()=>{
+            nextSlide();
+        },5000);
+        return ()=>clearInterval(stopInterval);
+    })
+    
+    const [activeIndex,setActiveIndex] = useState(0);
+    function nextSlide(){
+        setActiveIndex(prev=>
+            prev === sliderImage.length -1 ? 0 : prev+1
+        )
+    }
 
-    return(
-        <div className="slider-container">
-        <SliderContent activeIndex={activeIndex} sliderImage={sliderImage}/>
-        <Arrows prevSlide={()=>{setActiveIndex(activeIndex<1 ? len : activeIndex-1)}} 
-        nextSlide={()=>{setActiveIndex(activeIndex===len ? 0 : activeIndex + 1)}} />
-        <Dots 
-        activeIndex={activeIndex} 
-        sliderImage = {sliderImage} 
-        onclick={(activeIndex)=>{setActiveIndex(activeIndex)}}/>
-        </div>
-    )
+    function prevSlide(){
+        setActiveIndex(prev=>
+            prev === 0 ? sliderImage.length-1 : prev-1
+        )
+    }
+    return(<div className='slider'>
+    <Arrows prevSlide={prevSlide} nextSlide={nextSlide}/>
+    <SliderContent sliderImage={sliderImage} activeIndex= {activeIndex}/>
+    </ div>)
 }
-export default Slider;
 
+export default Slider

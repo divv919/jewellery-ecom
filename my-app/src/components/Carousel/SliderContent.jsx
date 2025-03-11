@@ -1,16 +1,18 @@
-export default function SliderContent({activeIndex,sliderImage}){
-    return(
-        <section>
-           {sliderImage.map((slide,index)=>{
-    return <div key={index}
-    className={activeIndex===index?"slides active":"inactive"}
-    >
-        <img className="slide-image" src={slide.urls}/>
-        <h2 className="slide-title">{slide.title}</h2>
-        <h3 className="slide-text">{slide.description}</h3>
-    </div>
-})}
-        </section>
-    )
-} 
+import sliderImage from '../../assets/sliderImage'
 
+function SliderContent({activeIndex, sliderImage}){
+    return(
+        <div className='slider-content'
+        style={{transform : `translateX(-${activeIndex*100}%)`}}>    {sliderImage.map((slide,index)=>{
+        return <div className='slide' key={index}>
+            {/* <h1>{slide.title}</h1> */}
+            <img src={slide.urls}></img>
+        </div>
+        }
+    )}
+    </div>
+)
+    
+}
+
+export default SliderContent;

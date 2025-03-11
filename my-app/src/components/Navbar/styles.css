@@ -1,0 +1,64 @@
+.nav-container{
+    height: 45px;
+    height: 90px;
+   }
+   .navbar {
+     position: fixed;
+     width: 100%;
+     top:0;
+     height: 50px;
+     z-index: 1000;
+     background-color: white;
+     font-size: 30px;
+     display: flex;
+     justify-content: space-between; 
+     align-items: center; 
+     padding: 30px 20px ; 
+     color: black;
+     margin: -8px;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+     margin-left: -50px;
+   }
+   .navbar h1{
+   font-size: 30px;
+   cursor: pointer;
+   color: orange;
+   padding-left: 40px;
+   }
+   
+   #contactNav{
+     border-radius: 2px;
+     padding: 8px;
+     border: 2px solid black;
+   }
+   
+   #contactNav:hover{
+     transition: all 0.2s ease-out;
+     border-color: orange;
+     background-color: orange;
+     color: white;
+   }
+   
+   .navbar a{
+     cursor: pointer;
+   
+   }
+   .border-effect{
+     margin-top: 8px;
+     border-bottom: 1px solid transparent;
+     /* box-sizing: border-box; */
+   padding-bottom: 4px;
+   }
+   .border-effect:hover{
+     transition: all 0.2s ease-out;
+     border-bottom: 5px solid orange;
+     color: orange;
+     padding-bottom: 0px;
+   }
+   
+   .navbar .options {
+   
+     display: flex;
+     gap: 20px; 
+   }
+   

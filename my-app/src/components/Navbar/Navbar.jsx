@@ -1,11 +1,10 @@
-import staticData from "../assets/staticData"
-import ContactForm from "./ContactForm/ContactForm";
+import staticData from "../../assets/staticData"
+import ContactForm from "../ContactForm/ContactForm";
 import { useState } from "react";
+import './styles.css' 
 function Navbar(){
     const [isPopped,setIsPopped]= useState(false);
-    function handleClick(){
-        console.log("State is changed ",isPopped)
-        
+    function handleClick(){        
         setIsPopped(!isPopped);
     }
     return(

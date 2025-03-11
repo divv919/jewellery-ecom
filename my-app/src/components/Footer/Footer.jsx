@@ -1,4 +1,5 @@
-import staticData from "../assets/staticData";
+import staticData from "../../assets/staticData";
+import './styles.css'
 function Footer(){
     return (
         <footer>
