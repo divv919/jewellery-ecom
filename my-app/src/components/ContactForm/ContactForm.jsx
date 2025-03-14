@@ -23,11 +23,11 @@ function ContactForm({closeFunc,isPopped}){
               </div>
               <h1>Contact Us</h1>
               <form id="contactPopupForm" onSubmit={handleSubmit}>
-                  <label for="name">Enter Name</label>
+                  <label htmlFor="name">Enter Name</label>
                   <input type="text" id="name" name="name" placeholder="Divyansh S."></input>
-                  <label for="phoneNumber">Enter Phone-number</label>
+                  <label htmlFor="phoneNumber">Enter Phone-number</label>
                   <input type="text" id="phoneNumber" name="phoneNumber"></input>
-                  <label for="message">Enter your message</label>
+                  <label htmlFor="message">Enter your message</label>
                   <textarea rows="5" cols="5"></textarea>
                   <input className="submitButton" type="submit" value="Submit"></input>
               </form>

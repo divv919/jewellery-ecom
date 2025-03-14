@@ -55,11 +55,11 @@
     pointer-events: all;
 }
 
-.prev {
+.arrows .prev {
     margin-left: 20px;
 }
 
-.next {
+.arrows .next {
     margin-right: 20px;
 }
 
