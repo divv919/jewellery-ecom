@@ -1,0 +1,23 @@
+.loader{
+    border : 10px solid white;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    animation: spin 1s linear infinite;
+    /* height: 60%;
+    width: 60%;
+    max-width: 80px;
+    max-height: 80px; */
+    width: min(80%, 80px);  
+    height: min(80%, 80px);
+    aspect-ratio: 1/1;
+    /* background-color: red; */
+}
+
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

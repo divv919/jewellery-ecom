@@ -1,0 +1,22 @@
+.checkout-container{
+    background-color: black;
+    width : 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    padding : 10px;
+    box-sizing: border-box;
+    /* height : 100px; */
+}
+.checkout-details{
+    width : 60%;
+    background-color: red;
+    height : 700px
+}
+.checkout-price{
+    width : 30%;
+    height  : 400px;
+    background-color: rebeccapurple;
+    position: sticky;
+    top : 100px;
+}

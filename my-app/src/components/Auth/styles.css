@@ -1,0 +1,20 @@
+.auth-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: black; */
+    padding: 20px;
+    box-sizing: border-box;
+
+}
+.auth-info{
+    background-color: red;
+    height : 500px;
+    width: 30%;
+}
+
+.auth-cred{
+    background-color: blue;
+    height : 500px;
+    width: 40%;
+}

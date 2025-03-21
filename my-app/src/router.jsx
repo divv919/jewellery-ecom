@@ -7,14 +7,17 @@ import CategoryPage from "./pages/CategoryPage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import AccountPage from "./pages/AccountPage";
-import FavouritesPage from "./pages/FavouritesPage";
-import LoginPage from "./pages/LoginPage";
 import SearchResultsPage from "./pages/SearchResultsPage"
-import SignupPage from "./pages/SignupPage";
 import AboutPage from "./pages/AboutPage";
 import OrdersPage from "./pages/OrdersPage";
 import CheckoutPage from "./pages/CheckoutPage";
-
+import Favourites from "./components/Favourites/Favourites";
+import Accounts from "./components/Accounts/Accounts";
+import { Navigate } from "react-router-dom";
+import Orders from "./components/Orders/Orders";
+import AuthPage from "./pages/AuthPage";
+import Login from "./components/Login/Login";
+import SignUp from "./components/Signup/Signup";
 const router = createBrowserRouter([
     {
         path : "/",
@@ -22,17 +25,26 @@ const router = createBrowserRouter([
         children : [
             {index : true, element : <Home />},
             {path : 'test' , element : <TestPage />},
-            {path : 'categories/:category', element : <CategoryPage/>},
-            {path : 'product/:productId', element : <ProductPage/>},
+            {path : 'products/', element : <CategoryPage/>},
+            {path : 'product/', element : <ProductPage/>},
             {path : 'cart', element : <CartPage/>},
-            {path : 'account', element :<AccountPage /> },
-            {path : 'favourites', element : <FavouritesPage/>},
-            {path : 'login', element : <LoginPage/>},
-            {path : 'signup', element : <SignupPage/>},
             {path : 'about', element : <AboutPage/>},
             {path : 'orders', element : <OrdersPage/>},
             {path : 'checkout', element : <CheckoutPage/>}, 
-            {path : 'search', element : <SearchResultsPage />}
+            {path : 'search', element : <SearchResultsPage />},
+            {path : 'account', element :<AccountPage />, children : [
+                {index : true,element : <Navigate to="accountInfo" replace />},
+                {path : 'favorites', element : <Favourites/>},
+                {path : 'orders' , element : <Orders/>},
+                {path : 'accountInfo', element : <Accounts/>}
+            ] },
+            {path : 'auth', element : <AuthPage />, children : [
+                {index : true, element : <Navigate to='login' replace />},
+                {path : 'login', element : <Login />},
+                {path : 'signup', element : <SignUp />},
+            ]},
+           
+
 
         ],
     },

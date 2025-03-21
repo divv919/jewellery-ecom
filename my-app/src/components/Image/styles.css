@@ -1,0 +1,20 @@
+.image-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.image-container img{
+    height: 100%;
+    width: 100%;
+}
+.spinner-wrapper{
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    height : 100%;
+    width: 100%;
+}

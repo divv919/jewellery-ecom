@@ -1,3 +1,7 @@
+import ProductShow from "../components/ProductShow/ProductShow";
 export default function ProductPage (){
-    return <h1>ProductPage</h1>;
+
+    return (<div>
+        <ProductShow/>
+    </div>);
 }

@@ -1,3 +1,5 @@
+import AccountSidebar from "../components/AccountSidebar/AccountSidebar";
 export default function AccountPage(){
-    return <h1>AccountPage</h1>;
+    
+    return <AccountSidebar/>;
 }

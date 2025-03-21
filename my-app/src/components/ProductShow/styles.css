@@ -1,0 +1,46 @@
+.product-image-section{
+background-color: red;
+height: 500px;
+position: sticky;
+width : 45%;
+top : 100px;
+padding: 2%;
+box-sizing: border-box;
+}
+.product-details-section{
+    padding: 2%;
+    background-color: #663399;
+    /* position: relative; */
+height: auto;
+width : 55%;
+box-sizing: border-box;
+
+    
+}
+.related-items-section{
+    background-color: blue;
+    height: 300px;
+    width: 100%;;
+}
+.product-name{
+    background-color: pink;
+}
+.product-price{
+    background-color: aqua;
+}
+.product-rating{
+    background-color: whitesmoke;
+}
+
+.product-details{
+    background-color: yellowgreen;
+    height : 600px
+}
+.product-review{
+    background-color: yellowgreen;
+    height : 600px
+}
+.product-qna{
+    background-color: yellowgreen;
+    height : 600px
+}

@@ -1,5 +1,5 @@
 import sliderImage from '../../assets/sliderImage'
-
+import Image from '../Image/Image';
 function SliderContent({activeIndex, sliderImage}){
     return(
         <div className='slider-content'
@@ -7,7 +7,7 @@ function SliderContent({activeIndex, sliderImage}){
         {sliderImage.map((slide,index)=>{
         return <div className='slide' key={index}>
             {/* <h1>{slide.title}</h1> */}
-            <img src={slide.urls}></img>
+            <Image height="100%" width = "100%" src={slide.urls}></Image>
         </div>
         }
     )}

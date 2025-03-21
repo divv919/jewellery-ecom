@@ -3,7 +3,7 @@ import './styles.css'
 function Footer(){
     return (
         <footer>
-            <div className="upper">
+            <footer className="upper">
             <div className="col">
             <h3>Useful Links</h3>
             <a>Delivery Info</a>
@@ -27,7 +27,7 @@ function Footer(){
             <a>{staticData.address}</a>
             </div>
             
-            </div>
+            </footer>
         </footer>
     )
 }

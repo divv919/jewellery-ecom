@@ -1,0 +1,38 @@
+
+.account-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: black;
+    /* height : 800px; */
+    width : 100%;
+    box-sizing: border-box;
+    padding : 2%;
+}
+
+.account-dropdown{
+  
+    background-color: rebeccapurple;
+    width : 30%;
+    box-sizing: border-box;
+    padding : 2%;
+    height : 1000px
+}
+.account-details{
+    
+
+    background-color: red;
+    height : 100%;
+    width :50%;
+    box-sizing: border-box;
+    padding : 2%;
+    height  : 1400px;
+}
+.account-name{
+    background-color: white;
+    height : 100px;
+}
+.account-config{
+    background-color: pink;
+    height : 85%;
+}

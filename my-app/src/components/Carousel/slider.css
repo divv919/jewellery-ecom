@@ -8,7 +8,7 @@
 .slider-content{
     display: flex;
     flex-direction: row;
-    background-color: red;
+    /* background-color: red; */
     width  : 100%;
     height : 100%;
     /* margin-top: 100px; */
@@ -61,6 +61,7 @@
 
 .arrows .next {
     margin-right: 20px;
+    border: 0px;
 }
 
 
