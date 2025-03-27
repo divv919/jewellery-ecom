@@ -29,10 +29,10 @@ function Cards({ categoryData, categoryTitle }) {
     return () => clearInterval(endInterval.current);
   }, [activeCard]);
 
-  const newCategoryData = categoryData.slice(
-    (activePage - 1) * pageSize,
-    activePage * pageSize
-  );
+  // const newCategoryData = categoryData.slice(
+  //   (activePage - 1) * pageSize,
+  //   activePage * pageSize
+  // );
 
   function handleNextPage() {
     if (activePage < totalPages) setActivePage(activePage + 1);
@@ -54,7 +54,7 @@ function Cards({ categoryData, categoryTitle }) {
         <h1>{categoryTitle}</h1>
       </div>
       <div className="all-cards">
-        {newCategoryData.map((item, index) => (
+        {categoryData.map((item, index) => (
           <div
             className="card"
             onMouseOver={() => handleMouseOver(index)}
@@ -87,9 +87,9 @@ function Cards({ categoryData, categoryTitle }) {
                 </div>
               </div>
             </div>
-            <p>{item.price}</p>
+            <p>₹{item.price}</p>
             <h6>
-              {item.title}
+              {item.name}
               <div className="heart">
                 <HeartIcon index={index} />
               </div>

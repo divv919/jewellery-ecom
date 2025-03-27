@@ -3,8 +3,10 @@ import axios from 'axios';
 import cors from 'cors';
 import'dotenv/config';
 import productRoutes from './routes/products.js';
+import categoryRoutes from './routes/category.js';
 const PORT = process.env.PORT || 5000;
 const app = express();
+
 
 
 app.use(cors({
@@ -15,6 +17,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use("/api/products", productRoutes)
+app.use('/api/categories', categoryRoutes)
 
 app.get('/',(req,res)=>{
     res.send("<h1>Hello</h1>")

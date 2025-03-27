@@ -1,0 +1,47 @@
+.sortAndFilterContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* background-color: red; */
+}
+.sortAndFilter{
+    /* background-color: red; */
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* gap : 10%; */
+    align-items: center;
+    width : 80%;
+}
+.sort-container{
+    /* max-height: 100px; */
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* margin : 10px 0; */
+    
+}
+.filter-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.sort-container button{
+
+    font-size: 16px;
+    background-color: white;
+    border :0px;
+    margin :0 10px;
+}
+.filter-container button{
+    font-size: 16px;
+    background-color: white;
+    border :0px;
+    margin :0 10px;
+}
