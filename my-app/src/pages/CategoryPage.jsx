@@ -5,8 +5,10 @@ import { useEffect,useState } from "react";
 import SortAndFilter from "../components/SortAndFilter/SortAndFilter";
 export default function CategoryPage(){
 
-    const [searchParams] = useSearchParams();
-    const category = searchParams.get('category');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const category = searchParams.get('category') || '';
+    const sort = searchParams.get('sort') || '';
+
     const [products,setProducts] = useState([]);
     // let categoryTitle = category.replace(/\s+/g, "");;
     
@@ -15,7 +17,7 @@ export default function CategoryPage(){
             
         try{
             
-            const response = await fetch(`http://localhost:3000/api/products?category=${category}`)
+            const response = await fetch(`http://localhost:3000/api/products?category=${category}&sort=${sort}`)
             const data = await response.json();
             setProducts(data)}
                 
@@ -25,13 +27,29 @@ export default function CategoryPage(){
     }
         fetchProduct();
 
-    },[category])
+    },[searchParams])
     
-    
+    const updateSort = (sortValue)=>{
+        setSearchParams((prev)=>{
+            const newSearchParams = new URLSearchParams(prev);
+            newSearchParams.set('sort', sortValue);
+            return newSearchParams
+        })
+    }
+
+    const updateCategory = (categoryValue)=>{
+        setSearchParams((prev)=>{
+            const newSearchParams = new URLSearchParams(prev);
+            newSearchParams.set('category', categoryValue);
+            return newSearchParams;
+        })
+    }
     
     return (
     <>
-    <SortAndFilter />
+    <SortAndFilter selectedSort={sort} selectedCategory = {category}
+    updateCategory = {updateCategory} 
+    updateSort={updateSort} />
     <Cards categoryData={products} categoryTitle="Explore"/>
     </>
     )   

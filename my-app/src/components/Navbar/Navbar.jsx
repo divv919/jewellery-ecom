@@ -13,7 +13,7 @@ function Navbar(){
 
         <div className="nav-container">
         <div className="navbar">
-        <h1>{staticData.title}</h1>
+        <p><b>{staticData.title}</b></p>
         <div className="options"> 
         <a className="border-effect">Favourites</a>
         <a className="border-effect">Cart</a>

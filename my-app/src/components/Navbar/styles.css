@@ -23,8 +23,8 @@
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
      /* margin-left: -50px; */
    }
-   .navbar h1{
-   font-size: 40px;
+   .navbar p{
+   /* font-size: 40px; */
    cursor: pointer;
    color: orange;
    /* padding-left: 40px; */
@@ -51,11 +51,11 @@
      margin-top: 8px;
      border-bottom: 1px solid transparent;
      /* box-sizing: border-box; */
-   padding-bottom: 4px;
+   padding-bottom: 3px;
    }
    .border-effect:hover{
      transition: all 0.2s ease-out;
-     border-bottom: 5px solid orange;
+     border-bottom: 4px solid orange;
      color: orange;
      padding-bottom: 0px;
    }
