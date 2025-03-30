@@ -2,6 +2,7 @@ import Cards from "../components/Cards/Cards";
 import { useSearchParams } from "react-router-dom";
 // import productData from "../assets/productData";
 import { useEffect,useState } from "react";
+import { useFetch } from "../hooks/useFetch";
 import SortAndFilter from "../components/SortAndFilter/SortAndFilter";
 export default function CategoryPage(){
 
