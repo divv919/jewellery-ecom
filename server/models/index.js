@@ -1,4 +1,4 @@
-import { sequelize } from '../model/index.js';
+import { sequelize } from '../db/index.js';
 import Product from './Product.js';
 import ProductReview from './ProductReview.js';
 import User from './User.js';

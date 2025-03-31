@@ -25,7 +25,7 @@ export default function CategoryCard({categoryData,isLoading,isErrorLoading}){
                 return(
                     <div onClick={()=>handleNavigation(item.name)} className="category-card" key={index} >
                         {/* <img src={item.src}/> */}
-                        <Image height="100%" width="100%" src={item.src} />
+                        <Image height="100%" width="100%" src={item.url} />
                         <h1>{`Explore ${item.name}s`}</h1>
                         <p>{item.description}</p>
                     </div>

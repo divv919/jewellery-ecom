@@ -20,7 +20,7 @@ app.use(express.json());
 
 const syncDatabase = async () => {
     try {
-      await sequelize.sync({ alter: false }); // Prevents structure modification
+      await sequelize.sync({ alter: false }); 
       console.log('Database synced successfully.');
     } catch (error) {
       console.error('Error syncing database:', error);
