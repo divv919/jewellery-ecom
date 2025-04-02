@@ -1,10 +1,13 @@
 import {Model, DataTypes} from 'sequelize';
 import { sequelize } from '../models/index.js';
+import models from '../models/index.js';
+import CategoryType from './CategoryType.js';
 
 class Category extends Model{
     static associate(models) {
         this.hasMany(models.Product, { foreignKey: 'category_id', as: 'product' });
-      }
+        this.belongsTo(models.CategoryType, {foreignKey : 'category_type_id' ,as :'category_type'})
+    }
 };
 
 Category.init(
@@ -26,6 +29,16 @@ Category.init(
         url : {
             type : DataTypes.TEXT,
             allowNull : false
+        },
+        category_type_id : {
+            type : DataTypes.INTEGER,
+            allowNull : false,
+            references : {
+                model : CategoryType,
+                key : 'id'
+            },
+            onDelete : 'CASCADE',
+            onUpdate : 'CASCADE'
         }
     },
     {

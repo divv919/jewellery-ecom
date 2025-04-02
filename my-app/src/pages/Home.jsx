@@ -8,32 +8,6 @@ import PromotionalBanner from '../components/PromotionalBanner/PromotionalBanner
 import SpecialOffer from '../components/SpecialOffer/SpecialOffer'
 
 
-const genderData = {
-    title : "Curated For You",
-    subtitle : "Shop by Gender",
-    links : [
-        {
-            "name" : "Male",
-            "url" : "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwe6fec18e/homepage/ShopByGender/sbg-men.jpg",
-            "path" : "/",
-            "description" : "Explore for Men"
-        },
-        {
-            "name" : "Female",
-            "url" : "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw811805ad/homepage/ShopByGender/sbg-women.jpg",
-            "path" : "/",
-            "description" :"Discover for Women"
-        },
-        {
-            "name" : "Kids",
-            "url" : "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw1e976d94/homepage/ShopByGender/sbg-kids.jpg",
-            "path" : "/",
-            "description" :"Shop for Kids"
-
-        }
-      
-    ]
-   }
    
 
 export default function Home(){
@@ -55,11 +29,15 @@ export default function Home(){
     getCategories();
 }
 )
+
     return(<div>
         <Slider sliderImage={sliderImage}/>
         <SpecialOffer />
-        {/* <CategoryCard categoryData={categories} isLoading={isLoading} isErrorLoading={isErrorLoading}/> */}
-        <CategoryCard categoryData={genderData} isLoading={isLoading} isErrorLoading={isErrorLoading}/>
+        {categories.map((category)=>{
+            return <CategoryCard categoryData={category} isErrorLoading={isErrorLoading} isLoading={isLoading} />
+        })}
+        {/* <CategoryCard categoryData={categories} isLoading={isLoading} isErrorLoading={isErrorLoading}/>
+        <CategoryCard categoryData={genderData} isLoading={isLoading} isErrorLoading={isErrorLoading}/> */}
 
         <PromotionalBanner/>
     </div>)

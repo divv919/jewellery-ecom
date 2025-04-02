@@ -1,11 +1,11 @@
 import './styles.css'
 import { Link, useNavigate} from 'react-router-dom'
 import Image from '../Image/Image';
-export default function CategoryCard({categoryData,isLoading,isErrorLoading}){
+export default function CategoryCard({categoryData,isErrorLoading,isLoading}){
 
     let navigate = useNavigate();
     function handleNavigation(category){
-        navigate(`/products?category=${category}`)
+        navigate(`/products/${category}`)
     }
     if(isErrorLoading){
         return(<h1>ERROR LOADING</h1>)
@@ -22,7 +22,7 @@ export default function CategoryCard({categoryData,isLoading,isErrorLoading}){
                     <p>{categoryData.subtitle}</p>
                 </div>
             <div className="category-all-cards">
-            {categoryData.links.map((item,index)=>{
+            {categoryData.categories.map((item,index)=>{
                 return(
                     <div onClick={()=>handleNavigation(item.name)} className="category-card" key={index} >
                         <div className='category-card-image'>
