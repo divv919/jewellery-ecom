@@ -16,18 +16,20 @@ export default function CategoryCard({categoryData,isLoading,isErrorLoading}){
     else{
     
     return(
-            <div className="section">
-                <div className="heading-category">
-                    <h1>Explore our categories</h1>
+            <div className="category-show-section">
+                <div className="category-heading">
+                    <h1>{categoryData.title}</h1>
+                    <p>{categoryData.subtitle}</p>
                 </div>
-            <div className="all-cards">
-            {categoryData.map((item,index)=>{
+            <div className="category-all-cards">
+            {categoryData.links.map((item,index)=>{
                 return(
                     <div onClick={()=>handleNavigation(item.name)} className="category-card" key={index} >
-                        {/* <img src={item.src}/> */}
+                        <div className='category-card-image'>
                         <Image height="100%" width="100%" src={item.url} />
-                        <h1>{`Explore ${item.name}s`}</h1>
+                        </div>
                         <p>{item.description}</p>
+                        {/* <p>{item.description}</p> */}
                     </div>
                     
                 )

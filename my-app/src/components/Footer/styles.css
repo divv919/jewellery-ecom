@@ -33,7 +33,7 @@ footer{
 .col{
   display: flex;
   flex-direction: column;
-  gap : 5%;
+  gap : 500%;
 }
 .footer-contact-section{
   /* background-color: blue; */
@@ -66,5 +66,24 @@ footer{
 
 }
 .footer-contact-title::after, .footer-col-title::after{
-  height: 10px;
+  content: "";
+  display: block;
+  width: 35%; 
+  height: 0.1vh; 
+  background-color: whitesmoke; 
+  margin: 8px 0 0; 
+  border-radius: 2px; 
+}
+
+.footer-col-links {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; 
+}
+.footer-col-link {
+  display: block; 
+  text-decoration: none; 
+  color: inherit; 
+  font-size: inherit;
+  font-weight: inherit;
 }

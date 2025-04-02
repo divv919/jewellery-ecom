@@ -1,51 +1,93 @@
+.category-show-section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    margin:  5% 0;
+    box-sizing: border-box;
+    width: 100%;
+    
+}
+
+
+.category-heading h1{
+    font-family: "Cormorant", serif;
+    font-size : 250%;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    
+}
+
+
+.category-all-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap : 2%;
+    width: 90%;
+    overflow: hidden;
+    /* background-color: red; */
+}
+
+
 .category-card{
     display : flex;
     flex-direction: column;
-    /* background-color: red; */
-    border: 1px solid orange;
-    box-sizing: border-box;
-    padding: 10px;
-    width: 300px;
+    
+   
+    width: 25vw;
     cursor: pointer;
-    height: 400px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 8px;
-    transition: all 0.5s ease;
+    height: 50vh;
+    position: relative;
+    margin: 1%;
+    overflow: hidden;
+    /* background-color: red; */
 }
 .category-card:active, .category-card:visited, .category-card:link{
     color : black;
     text-decoration: none;
 }
 
-.category-card img{
-    height: 80%;
-    object-fit: cover;
-    width: 100%;
+.category-card-image{
+    height: 90%;
+    width: 25vw;
     overflow: hidden;
-    border-radius:8px ;
-    /* border: 1px solid orange; */
+    border-radius: 8px;
 }
-.category-card h1{
-    
-    margin: 10px;
-    margin-left: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* font-size: 30px; */
-    width: 100%;
-    height: 50px;
-    text-wrap: nowrap;    overflow: hidden;
 
 
-    
-}
 .category-card p{
-    margin: 10px;
-    margin-left:0 ;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 24px;
-    text-wrap: nowrap;
-    overflow: hidden;
+    height: 10%;
+    /* position: absolute; */
+    font-weight: 500;
+    font-size: 110%;
+    text-align: center;
+    /* bottom : 0;
+    left : 50%;
+    transform: translateX(-50%); */
 
 }
+
+.category-heading p::after{
+    content: "";
+    display: block;
+    width: 60%; 
+    height: 0.1vh; 
+    background-color: #FF9D23;
+    margin: 5% 20% 0; 
+    border-radius: 2px; 
+  }
+  
+.category-heading p{
+    text-align: center;
+    margin: 0;
+    
+}
+  
+.category-heading{
+   margin: 1%;
+}
+
+

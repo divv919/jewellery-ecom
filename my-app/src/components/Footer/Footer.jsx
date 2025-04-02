@@ -1,5 +1,5 @@
 import "./styles.css";
-
+import {Link} from "react-router-dom"
 
 
 function Footer() {
@@ -47,15 +47,17 @@ function Footer() {
           return (
             <div className="col">
               <p className="footer-col-title">{item.title}
-                ::after
+
               </p>
+              <div className="footer-col-links">
               {item.links.map((link) => {
                 return (
-                  <p className="footer-col-links" onClick={link.url}>
+                  <Link className="footer-col-link" to={link.url}>
                     {link.name}
-                  </p>
+                  </Link>
                 );
               })}
+              </div>
             </div>
           );
         })}
@@ -65,11 +67,12 @@ function Footer() {
         <div className="footer-contact-links">
         {contactDetails.links.map((link) => {
           return (
-            <img
-              className="footer-contact-link"
+           <Link to={link.path} className="footer-contact-link">
+            <img 
               src={link.url}
-              onClick={link.path}
+              alt={link.name}
             />
+            </Link>
           );
         })}
         </div>

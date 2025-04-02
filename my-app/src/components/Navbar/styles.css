@@ -26,7 +26,9 @@
    .navbar p{
    /* font-size: 40px; */
    cursor: pointer;
-   color: orange;
+   color: #FF9D23;
+
+
    /* padding-left: 40px; */
    }
    
@@ -45,6 +47,7 @@
    
    .navbar a{
      cursor: pointer;
+     
    
    }
    .border-effect{

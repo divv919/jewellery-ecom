@@ -1,0 +1,21 @@
+.special-offer-section{
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap : 2%;
+    margin:  5% 0;
+    padding: 0 2%;
+}
+
+.special-offer-image {
+    width: 45%;
+    background-color: red;
+    max-height: 500px;
+    cursor: pointer;
+}
+.special-offer-image img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
