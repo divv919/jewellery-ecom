@@ -46,9 +46,66 @@ function Cards({ categoryData, categoryTitle }) {
 
   return (
     <div className="section">
-      <div className="heading-category">
-        <h1>{categoryTitle}</h1>
+      <div className="products-section-heading">
+        <p>Explore our products</p>
       </div>
+      <div className="products-section-items">
+        <div className="filter-options">
+          <div className="filter-heading">
+            Filters
+          </div>
+          <div className="filter-option"> 
+            <fieldset>
+              <legend>Gender</legend>
+              <label><input type="checkbox"/>Male</label>
+              <label><input type="checkbox"/>Female</label>
+              <label><input type="checkbox"/>Kids</label>
+
+
+            </fieldset>
+            <fieldset>
+              <legend>Jewellery Type</legend>
+              <label><input type="checkbox"/>Bangles</label>
+              <label><input type="checkbox"/>Bracelets</label>
+              <label><input type="checkbox"/>Earrings</label>
+              <label><input type="checkbox"/>Rings</label>
+              <label><input type="checkbox"/>Pendants</label>
+              <label><input type="checkbox"/>Nosepins</label>
+              <label><input type="checkbox"/>Chains</label>
+              <label><input type="checkbox"/>Necklaces</label>
+              <label><input type="checkbox"/>Mangalsutras</label>
+            </fieldset>
+            <fieldset>
+              <legend>Price Range</legend>
+              <label><input type="checkbox"/>Under ₹25,000</label>
+              <label><input type="checkbox"/>₹25,000 - ₹50,000</label>
+              <label><input type="checkbox"/>₹50,000 - ₹100,000</label>
+
+              <label><input type="checkbox"/>Above ₹100,000</label>
+
+
+            </fieldset>
+            <fieldset>
+              <legend>Occasion</legend>
+              <label><input type="checkbox"/>Casual</label>
+              <label><input type="checkbox"/>Traditional</label>
+              <label><input type="checkbox"/>Office Wear</label>
+
+
+
+            </fieldset>
+            <fieldset>
+              <legend>Purity</legend>
+              <label><input type="checkbox"/>18K</label>
+              <label><input type="checkbox"/>20K</label>
+              <label><input type="checkbox"/>22K</label>
+
+              
+
+
+            </fieldset>
+          </div>
+        </div>
       <div className="all-cards">
         {categoryData.map((item, index) => (
           <div
@@ -85,13 +142,14 @@ function Cards({ categoryData, categoryTitle }) {
             <div className="heart">
                 <HeartIcon index={index} />
               </div>
-            <p className="price-tag"><b>₹{item.price}</b></p>
-            <p>
+            <p className="products-price">₹{item.price}</p>
+            <p className="products-name">
               {item.name}
 
             </p>
           </div>
         ))}
+      </div>
       </div>
 
       
