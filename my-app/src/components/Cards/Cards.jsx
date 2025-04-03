@@ -72,9 +72,9 @@ function Cards({ categoryData, categoryTitle }) {
               >
                 {item.images.map((i,index)=>{
                  return(
-                      <div className="img1">
+                      <div className="img1" key={i.image_id}>
                   {/* <div className="test1">1</div> */}
-                  <Image src={i} height="100%" width="100%" />
+                  <Image src={i.image_url} height="100%" width="100%" />
                 </div>
                   )
                 })}

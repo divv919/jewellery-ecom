@@ -1,8 +1,7 @@
 import models from '../models/index.js'
-import CategoryType from '../models/CategoryType.js'
 export default async (req,res)=>{
     try{
-        let result = await models.CategoryType.findAll({
+        const result = await models.CategoryType.findAll({
             attributes : ['id', 'name' , 'title', 'subtitle'],
             include : [
                 {
@@ -10,10 +9,12 @@ export default async (req,res)=>{
                     as : 'categories',
                     attributes : ['id','name','description','url']
                 }
-            ]
+            ],
+            
     })
     const newResult = result.map((item)=>({
         id : item.id,
+        name : item.name,
         title : item.title,
         subtitle : item.subtitle,
         categories : item.categories.map((i)=>({

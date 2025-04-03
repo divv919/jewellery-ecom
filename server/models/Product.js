@@ -6,7 +6,10 @@ class Product extends Model {
     static associate(models) {
         this.hasMany(models.ProductReview, { foreignKey: 'product_id', as: 'reviews' });
         this.hasMany(models.ProductImage, { foreignKey: 'product_id', as: 'images' });
-        this.belongsTo(models.Category, { foreignKey: 'category_id', as: 'category' });
+        this.belongsTo(models.Category, { foreignKey: 'type', as: 'categoryType' });
+        this.belongsTo(models.Category,{foreignKey : 'gender', as :'categoryGender' });
+        this.belongsTo(models.Category,{foreignKey : 'occasion', as :'categoryOccasion' });
+
       }
 }
 
@@ -18,7 +21,7 @@ Product.init(
       allowNull: false,
       autoIncrement: true, 
     },
-    category_id: {
+    type: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references : {
@@ -63,12 +66,20 @@ Product.init(
       allowNull: true,
     },
     occasion: {
-      type: DataTypes.STRING(30),
-      allowNull: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references : {
+        model: Category,
+        key : 'id'
+      }
     },
     gender: {
-      type: DataTypes.STRING(10),
-      allowNull: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references : {
+        model: Category,
+        key : 'id'
+      }
     },
     size: {
       type: DataTypes.STRING(20),

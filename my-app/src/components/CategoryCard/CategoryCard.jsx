@@ -4,8 +4,8 @@ import Image from '../Image/Image';
 export default function CategoryCard({categoryData,isErrorLoading,isLoading}){
 
     let navigate = useNavigate();
-    function handleNavigation(category){
-        navigate(`/products/${category}`)
+    function handleNavigation(categoryName,categoryType){
+        navigate(`/shop/${categoryType}/${categoryName}`)
     }
     if(isErrorLoading){
         return(<h1>ERROR LOADING</h1>)
@@ -14,7 +14,6 @@ export default function CategoryCard({categoryData,isErrorLoading,isLoading}){
         return(<h1>LOADING</h1>)
     }
     else{
-    
     return(
             <div className="category-show-section">
                 <div className="category-heading">
@@ -24,7 +23,7 @@ export default function CategoryCard({categoryData,isErrorLoading,isLoading}){
             <div className="category-all-cards">
             {categoryData.categories.map((item,index)=>{
                 return(
-                    <div onClick={()=>handleNavigation(item.name)} className="category-card" key={index} >
+                    <div onClick={()=>handleNavigation(item.name,categoryData.name)} className="category-card" key={index} >
                         <div className='category-card-image'>
                         <Image height="100%" width="100%" src={item.url} />
                         </div>

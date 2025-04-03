@@ -1,47 +1,39 @@
-import * as db from '../db/index.js';
-
-
+import {sequelize} from '../db/index.js'
+import  models from '../models/index.js'
 
  export const getProducts = async (req,res)=>{
+    let param = req.params;
    try{
-    const {sort,category} = req.query;
-    let whereClause = '';
-    let orderClause = '';
-    let queryParams = []
+    const id = await models.Category.findOne({
+        attributes : ['id'],
+        where : [{name : param.categoryName}]
+    })
 
-        if(category && category !== 'null'){
-            const id = await db.query('SELECT id FROM categories WHERE name=$1',[category]);
-            if(id.rows.length>0){
-                whereClause = ' WHERE category_id=$1';
-                queryParams.push(id.rows[0].id);
+    const result = await models.Product.findAll({
+        attributes : ['id', 'name', 'metal_price','diamond_price','making_charges','gst'],
+        include : [
+            {
+                model : models.ProductImage,
+                as : 'images',
+                attributes : ['image_id','image_url']
             }
-    
-        }
-        
-        switch(sort){
-            case 'price_asc' : orderClause = 'ORDER BY price ASC';
-            break;
-            case 'price_desc' : orderClause = 'ORDER BY price DESC';
-            break;
-
-            case 'rating' : break;
-            default : orderClause = '';
-        }
-        const query = `SELECT p.*,ROUND((p.metal_price + p.making_charges + p.diamond_price) + (p.metal_price + p.making_charges + p.diamond_price)*3/100) AS price, COALESCE(JSON_AGG(pi.image_url) FILTER (WHERE pi.image_url IS NOT NULL), '[]') AS images FROM public.products p LEFT JOIN public.product_images pi ON p.id = pi.product_id  ${whereClause} GROUP BY p.id ${orderClause}`;
-
-        const result = await db.query(query, queryParams);
-    // const result = await db.query('SELECT name, diamond_price as price FROM products WHERE category_id = $1',[id.rows[0].id]);
-
-    res.json(result.rows);
+        ],
+        where : [{[param.categoryType] : id.id}]
+    })
+    const newResult  = result.map((product)=>({
+        id : product.id,
+        price :  product.metal_price ,
+        name : product.name,
+        images : product.images.map((image)=>({
+            image_id : image.image_id,
+            image_url : image.image_url
+        }))
+    }))
+    res.status(200).json(newResult);
 }
 catch(err){
     console.error("Error fetching products data : ", err);
+    res.status(500)
 }
-    // const result = await db.query('SELECT * FROM products WHERE category_id');
-    // console.log(result);
-    // if(category){
-    //     return res.json(productData[category] || []);
-    // }
     
-    // res.json(productData);
 }
