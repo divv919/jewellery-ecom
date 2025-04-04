@@ -3,11 +3,13 @@ import  models from '../models/index.js'
 
  export const getProducts = async (req,res)=>{
     let param = req.params;
+    let query = req.query;
    try{
     const id = await models.Category.findOne({
         attributes : ['id'],
-        where : [{name : param.categoryName}]
+        where : {name : param.categoryName}
     })
+// param.categoryType = `${param.categoryType}_id`
 
     const result = await models.Product.findAll({
         attributes : ['id', 'name', 'metal_price','diamond_price','making_charges','gst'],
@@ -18,7 +20,7 @@ import  models from '../models/index.js'
                 attributes : ['image_id','image_url']
             }
         ],
-        where : [{[param.categoryType] : id.id}]
+        where : {...query, [param.categoryType] : param.categoryName }
     })
     const newResult  = result.map((product)=>({
         id : product.id,

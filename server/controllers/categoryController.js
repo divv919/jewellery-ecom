@@ -3,11 +3,16 @@ export default async (req,res)=>{
     try{
         const result = await models.CategoryType.findAll({
             attributes : ['id', 'name' , 'title', 'subtitle'],
+            order : [['id','ASC']],
+
             include : [
                 {
                     model : models.Category,
                     as : 'categories',
-                    attributes : ['id','name','description','url']
+                    attributes : ['id','name','description','url'],
+                    order : [['id','ASC']]
+                    
+
                 }
             ],
             
@@ -24,6 +29,7 @@ export default async (req,res)=>{
             url : i.url
         }))
     }))
+    
 
     res.status(200).json(newResult);
     }

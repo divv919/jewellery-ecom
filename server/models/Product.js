@@ -117,7 +117,23 @@ Product.init(
       type: DataTypes.NUMERIC,
       allowNull: true,
     },
+    type : {
+      type : DataTypes.TEXT,
+      allowNull: true,
+
+    },
+    gender : {
+      type : DataTypes.TEXT,
+      allowNull: true,
+
+    },
+    occasion : {
+      type : DataTypes.TEXT,
+      allowNull: true,
+
+    }
   },
+
   {
     sequelize, 
     modelName: 'Product', 

@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import SortAndFilter from "../components/SortAndFilter/SortAndFilter";
 export default function CategoryPage(){
 
-   
+   const [searchParams, setSearchParams] = useSearchParams();
 const params = useParams();
     const [products,setProducts] = useState([]);
     
@@ -15,8 +15,8 @@ const params = useParams();
         async function fetchProduct(){
             
         try{
-            
-            const response = await fetch(`http://localhost:3000/api/products/${params.categoryType}/${params.categoryName}`)
+
+            const response = await fetch(`http://localhost:3000/api/products/${params.categoryType}/${params.categoryName}?${searchParams}`)
             const data = await response.json();
             setProducts(data)}
                 
@@ -26,8 +26,7 @@ const params = useParams();
     }
         fetchProduct();
 
-    },[params])
-    
+    },[params,searchParams])
    
     
     return (

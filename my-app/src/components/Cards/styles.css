@@ -59,8 +59,68 @@ box-sizing: border-box;
   .filter-option{
     
   }
+  legend{
+    font-size: 120%;
+    color :#FF9D23;
+  }
+  label{
+    font-weight: 400;
+    margin :  5px 0;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: .1px;
+    cursor: pointer;
+    
+  }
   .filter-heading{
+    display: flex;
+    flex-direction: row;
+
     margin-bottom: 10%;
+    font-size: 120%;
+    color :#FF9D23;
+    /* margin-left: 8%; */
+    width: 100%;
+    justify-content: space-between;
+  }
+  .clear-filters-button{
+    cursor: pointer;
+  }
+  /* .filter-heading::after{
+    content:  "";
+    width: 100%;
+    display: block;
+    height: 0.15vh;
+    background-color: rgba(0,0,0,0.4);
+    margin: 10px 0px ;
+  } */
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius : 6px;
+    width: 1.25vw;
+    transform: translateY(40%);
+    
+    aspect-ratio: 1;
+    border : 1px solid rgba(0,0,0,0.4);
+    /* margin: 0px; */
+    margin-right : 4%;
+  }
+  input[type="checkbox"]:checked {
+    background-color: #FF9D23;
+    border-color: #FF9D23;
+  }
+  input[type="checkbox"]:checked::after{
+    content: "✔";
+    font-size: 0.8rem;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    top : 50%;
+    /* transform: translateY(50%); */
+
   }
    fieldset{
     /* margin: 20px; */

@@ -10,7 +10,7 @@
 
 .special-offer-image {
     width: 45%;
-    background-color: red;
+    /* background-color: red; */
     max-height: 500px;
     cursor: pointer;
 }
