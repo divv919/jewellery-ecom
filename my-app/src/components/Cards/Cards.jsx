@@ -6,6 +6,7 @@ import Image from "../Image/Image";
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartIcon from "./HeartIcon/HeartIcon";
 function Cards({ categoryData, categoryTitle }) {
+  
   const {categoryType} = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -59,6 +60,8 @@ function Cards({ categoryData, categoryTitle }) {
    }
    setSearchParams(param);
   }
+
+ 
   return (
     <div className="section">
       <div className="products-section-heading">
@@ -81,23 +84,22 @@ function Cards({ categoryData, categoryTitle }) {
             </fieldset>
             <fieldset style={{display : categoryType=="type"?"none":"flex"}}>
               <legend>Jewellery Type</legend>
-              <label><input type="checkbox"  name="type" value="Bangle" onChange={handleChange} checked={searchParams.getAll('Type').includes('Bangle')}/>Bangles</label>
-              <label><input type="checkbox"  name="type" value="Bracelet" onChange={handleChange} checked={searchParams.getAll('Type').includes('Bracelet')}/>Bracelets</label>
-              <label><input type="checkbox" name="type" value="Earring" onChange={handleChange}checked={searchParams.getAll('Type').includes('Earring')} />Earrings</label>
-              <label><input type="checkbox" name="type" value="Ring" onChange={handleChange} checked={searchParams.getAll('Type').includes('Ring')}/>Rings</label>
-              <label><input type="checkbox" name="type" value="Pendant" onChange={handleChange} checked={searchParams.getAll('Type').includes('Pendant')}/>Pendants</label>
-              <label><input type="checkbox" name="type" value="Nosepin" onChange={handleChange} checked={searchParams.getAll('Type').includes('Nosepin')}/>Nosepins</label>
-              <label><input type="checkbox" name="type" value="Chain" onChange={handleChange} checked={searchParams.getAll('Type').includes('Chain')}/>Chains</label>
-              <label><input type="checkbox" name="type" value="Necklace" onChange={handleChange}checked={searchParams.getAll('Type').includes('Necklace')}/>Necklaces</label>
-              <label><input type="checkbox" name="type" value="Mangalsutra" onChange={handleChange} checked={searchParams.getAll('Type').includes('Mangalsutra')}/>Mangalsutras</label>
+              <label><input type="checkbox"  name="type" value="Bangle" onChange={handleChange} checked={searchParams.getAll('type').includes('Bangle')}/>Bangles</label>
+              <label><input type="checkbox"  name="type" value="Bracelet" onChange={handleChange} checked={searchParams.getAll('type').includes('Bracelet')}/>Bracelets</label>
+              <label><input type="checkbox" name="type" value="Earring" onChange={handleChange}checked={searchParams.getAll('type').includes('Earring')} />Earrings</label>
+              <label><input type="checkbox" name="type" value="Ring" onChange={handleChange} checked={searchParams.getAll('type').includes('Ring')}/>Rings</label>
+              <label><input type="checkbox" name="type" value="Pendant" onChange={handleChange} checked={searchParams.getAll('type').includes('Pendant')}/>Pendants</label>
+              <label><input type="checkbox" name="type" value="Nosepin" onChange={handleChange} checked={searchParams.getAll('type').includes('Nosepin')}/>Nosepins</label>
+              <label><input type="checkbox" name="type" value="Chain" onChange={handleChange} checked={searchParams.getAll('type').includes('Chain')}/>Chains</label>
+              <label><input type="checkbox" name="type" value="Necklace" onChange={handleChange}checked={searchParams.getAll('type').includes('Necklace')}/>Necklaces</label>
+              <label><input type="checkbox" name="type" value="Mangalsutra" onChange={handleChange} checked={searchParams.getAll('type').includes('Mangalsutra')}/>Mangalsutras</label>
             </fieldset>
             <fieldset>
               <legend>Price Range</legend>
-              <label><input type="checkbox" name=""/>Under ₹25,000</label>
-              <label><input type="checkbox" name=""/>₹25,000 - ₹50,000</label>
-              <label><input type="checkbox" name=""/>₹50,000 - ₹100,000</label>
-
-              <label><input type="checkbox" name=""/>Above ₹100,000</label>
+              <label><input type="checkbox" name="price" value="0-25000" onChange={handleChange} checked={searchParams.getAll('price').includes('0-25000')}/>Under ₹25,000</label>
+              <label><input type="checkbox" name="price" value="25000-50000" onChange={handleChange} checked={searchParams.getAll('price').includes('25000-50000')}/>₹25,000 - ₹50,000</label>
+              <label><input type="checkbox" name="price" value="50000-100000" onChange={handleChange} checked={searchParams.getAll('price').includes('50000-100000')}/>₹50,000 - ₹100,000</label>
+              <label><input type="checkbox" name="price" value="100000-1000000" onChange={handleChange} checked={searchParams.getAll('price').includes('100000-1000000')}/>Above ₹100,000</label>
 
 
             </fieldset>
@@ -112,9 +114,9 @@ function Cards({ categoryData, categoryTitle }) {
             </fieldset>
             <fieldset>
               <legend>Purity</legend>
-              <label><input type="checkbox" name="karatage" value= "18k" onChange={handleChange}/>18K</label>
-              <label><input type="checkbox" name="karatage" value= "20k" onChange={handleChange}/>20K</label>
-              <label><input type="checkbox" name="karatage" value= "22k" onChange={handleChange}/>22K</label>
+              <label><input type="checkbox" name="karatage" value= "14k" checked={searchParams.getAll('karatage').includes('14k')} onChange={handleChange}/>14K</label>
+              <label><input type="checkbox" name="karatage" value= "18k" checked={searchParams.getAll('karatage').includes('18k')}  onChange={handleChange}/>18K</label>
+              <label><input type="checkbox" name="karatage" value= "22k"  checked={searchParams.getAll('karatage').includes('22k')} onChange={handleChange}/>22K</label>
 
               
 
@@ -122,8 +124,10 @@ function Cards({ categoryData, categoryTitle }) {
             </fieldset>
           </div>
         </div>
+        
       <div className="all-cards">
-        {categoryData.map((item, index) => (
+        { categoryData.length==0? (<h1>No data</h1>) :
+        categoryData.map((item, index) => (
           <div
             className="card"
             onMouseOver={() => handleMouseOver(index)}

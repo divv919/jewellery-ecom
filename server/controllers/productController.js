@@ -1,18 +1,33 @@
+import { Op } from 'sequelize';
 import {sequelize} from '../db/index.js'
 import  models from '../models/index.js'
 
  export const getProducts = async (req,res)=>{
     let param = req.params;
     let query = req.query;
+    let priceQuery;
+    if(query.price !== undefined){let queryRangeArray = (Array.isArray(query.price))?query.price:[query.price];
+
+     priceQuery = queryRangeArray.map((range)=>{
+        const [min,max] = range.split('-');
+        return {
+            price :{ [Op.between] : [min,max] }
+        }
+    }) }
+
    try{
-    const id = await models.Category.findOne({
-        attributes : ['id'],
-        where : {name : param.categoryName}
-    })
-// param.categoryType = `${param.categoryType}_id`
+    
+    const { price,...safeQuery} = query;
+   
+    const whereClause = {
+        [param.categoryType]: param.categoryName,
+        ...(query.price?{[Op.or] : priceQuery}:{}),
+        ...safeQuery,
+      }
+
 
     const result = await models.Product.findAll({
-        attributes : ['id', 'name', 'metal_price','diamond_price','making_charges','gst'],
+        attributes : ['id', 'name','price'],
         include : [
             {
                 model : models.ProductImage,
@@ -20,17 +35,23 @@ import  models from '../models/index.js'
                 attributes : ['image_id','image_url']
             }
         ],
-        where : {...query, [param.categoryType] : param.categoryName }
+
+
+        where: whereClause
     })
-    const newResult  = result.map((product)=>({
-        id : product.id,
-        price :  product.metal_price ,
-        name : product.name,
-        images : product.images.map((image)=>({
-            image_id : image.image_id,
-            image_url : image.image_url
-        }))
-    }))
+
+
+    const newResult  = result.map((product)=>{
+        return({
+            id : product.id,
+            price :  product.price ,
+            name : product.name,
+            images : product.images.map((image)=>({
+                image_id : image.image_id,
+                image_url : image.image_url
+            }))
+        })
+    })
     res.status(200).json(newResult);
 }
 catch(err){

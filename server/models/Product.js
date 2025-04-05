@@ -58,7 +58,7 @@ Product.init(
       allowNull: false,
     },
     karatage: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     gross_weight: {
@@ -131,7 +131,13 @@ Product.init(
       type : DataTypes.TEXT,
       allowNull: true,
 
-    }
+    },
+    
+      price : {
+        type : DataTypes.TEXT,
+      allowNull: true,
+      }
+    
   },
 
   {
