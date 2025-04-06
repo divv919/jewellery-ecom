@@ -6,6 +6,7 @@ import  models from '../models/index.js'
     let param = req.params;
     let query = req.query;
     let priceQuery;
+    
     if(query.price !== undefined){let queryRangeArray = (Array.isArray(query.price))?query.price:[query.price];
 
      priceQuery = queryRangeArray.map((range)=>{
@@ -14,10 +15,21 @@ import  models from '../models/index.js'
             price :{ [Op.between] : [min,max] }
         }
     }) }
+    
 
    try{
     
-    const { price,...safeQuery} = query;
+    const { price, sort, ...safeQuery} = query;
+    
+    let orderClause = [];
+    if(sort == 'price_asc'){
+        orderClause.push(['price','ASC']);
+    }
+    if((sort == 'price_desc')){
+        orderClause.push(['price','DESC'])
+    }
+    
+    
    
     const whereClause = {
         [param.categoryType]: param.categoryName,
@@ -37,7 +49,8 @@ import  models from '../models/index.js'
         ],
 
 
-        where: whereClause
+        where: whereClause,
+        order : orderClause.length?orderClause:undefined
     })
 
 
