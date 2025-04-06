@@ -25,7 +25,11 @@
   height: 100%;
   
 }
+.cards-section{
+  width: 80%;
+  height: 100%;
 
+}
   .all-cards{
     /* background-color: red; */
   display: flex;
@@ -34,10 +38,12 @@
   /* gap :4%; */
   justify-content: center;
   /* background-color: red; */
-  width: 80%;
+  width: 100%;
   padding:  0.5%;
 box-sizing: border-box;
   height: 100%;
+  position: relative;
+
   }
   .filter-options{
     width: 20%;
@@ -275,4 +281,52 @@ box-sizing: border-box;
   }
   p.products-name{
    font-size: 90%; 
+  }
+  .sort-button{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    text-align: center;
+    /* background-color: blue; */
+    position: relative;
+    z-index: 100;
+    left : 100%;
+    /* width: auto; */
+    max-width: 20%;
+    transform: translateX(-100%);
+    padding: 1%;
+    /* position: relative; */
+
+  }
+  .sort-button p{
+    margin: 0 4%;
+
+  }
+  p.sort-by {
+    cursor: pointer;
+    color: #FF9D23;
+  }
+  .sort-by:hover{
+    color: black;
+  }
+
+  .sorting-dropdown{
+    /* height: 200px; */
+    padding:  5%;
+    position: absolute;
+    top : 100%;
+    right: 20%;
+    /* z-index: 1000; */
+    /* width:  300px; */
+    background-color: white;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: start;
+    /* border : 1px solid black; */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    border-radius: 8px;
+/* gap : 10%; */
+  }
+  .sorting-dropdown p{
+    margin: 10px;
   }
