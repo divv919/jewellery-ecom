@@ -1,15 +1,46 @@
-import * as db from '../db/index.js';
-
-export default async(req,res)=>{
-    try{
-        console.log(req.params)
-        const result = await db.query("SELECT column_name, data_type, character_maximum_length, is_nullable FROM information_schema.columns WHERE table_name = 'products'")
-
-        //  const result = await db.query("SELECT * FROM products WHERE id=$1",[req.params.id])
-        res.json(result.rows);
-    }
-    catch(err){
-        console.log("Error fetching product info ", err.stack )
-    }
-}
-
+import models, { sequelize } from "../models/index.js";
+export default async (req, res) => {
+  try {
+    const result = await models.Product.findByPk(req.params.id, {
+      //   attributes : {
+      //     include : [
+      //         [sequelize.literal('SELECT AVG() FROM product_reviews WHERE ')]
+      //     ]
+      //   },
+      attributes: {
+        include: [
+          [
+            sequelize.literal(`(
+            SELECT ROUND(AVG("rating"),2)
+            FROM "product_reviews"
+            WHERE "product_reviews"."product_id" = "Product"."id")
+            `),
+            "rating",
+          ],
+          [
+            sequelize.literal(`(
+            SELECT COUNT(*)
+            FROM "product_reviews"
+            WHERE "product_reviews"."product_id" = "Product"."id"
+            )`),
+            "rating_count",
+          ],
+        ],
+      },
+      include: [
+        {
+          model: models.ProductReview,
+          as: "reviews",
+        },
+        {
+          model: models.ProductImage,
+          as: "images",
+        },
+      ],
+    });
+    res.status(200).json(result);
+  } catch (err) {
+    console.log("Error getting product info : ", err);
+    res.status(500);
+  }
+};

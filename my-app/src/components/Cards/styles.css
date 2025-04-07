@@ -300,15 +300,19 @@ box-sizing: border-box;
   }
   .sort-button p{
     margin: 0 4%;
+    text-wrap: nowrap;
 
   }
+ 
   p.sort-by {
     cursor: pointer;
     color: #FF9D23;
+    text-wrap: nowrap;
   }
   .sort-by:hover{
     color: black;
   }
+
 
   .sorting-dropdown{
     /* height: 200px; */
@@ -327,6 +331,14 @@ box-sizing: border-box;
     border-radius: 8px;
 /* gap : 10%; */
   }
-  .sorting-dropdown p{
+  .sorting-dropdown button{
     margin: 10px;
+    background-color: white;
+    border: 0;
+    font-size: 100%;
+    cursor: pointer;
+    text-wrap: nowrap;
+  }
+  .sorting-dropdown button.active{
+    color: #FF9D23;
   }

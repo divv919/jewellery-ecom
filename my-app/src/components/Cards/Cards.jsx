@@ -10,11 +10,10 @@ function Cards({ categoryData, categoryTitle }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   // const [isFavorite,setIsFavorite] = useState(false)
-  const pageSize = 12;
+
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [currentSort, setCurrentSort] = useState("relevance");
   const endInterval = useRef(null);
 
   // console.log(categoryData)
@@ -41,6 +40,17 @@ function Cards({ categoryData, categoryTitle }) {
       setActiveIndex(1);
     }
   };
+  const handleClearFilter = () => {
+    const param = new URLSearchParams(searchParams);
+    // console.log(param.get("sort"));
+    if (param.get("sort")) {
+      const newParam = new URLSearchParams();
+      newParam.append("sort", param.get("sort"));
+      setSearchParams(newParam);
+    } else {
+      setSearchParams("");
+    }
+  };
   function handleMouseClick(id) {
     navigate(`/product/${id}`);
   }
@@ -58,7 +68,18 @@ function Cards({ categoryData, categoryTitle }) {
     }
     setSearchParams(param);
   }
-
+  const handleSortChange = (e) => {
+    setShowSortDropdown(false);
+    const param = new URLSearchParams(searchParams);
+    console.log(e.target.value);
+    if (e.target.value === "relevance") {
+      param.delete("sort");
+    } else {
+      param.delete("sort");
+      param.append("sort", e.target.value);
+    }
+    setSearchParams(param);
+  };
   return (
     <div className="section">
       <div className="products-section-heading">
@@ -68,10 +89,7 @@ function Cards({ categoryData, categoryTitle }) {
         <div className="filter-options">
           <div className="filter-heading">
             <p>Filters</p>
-            <p
-              className="clear-filters-button"
-              onClick={() => setSearchParams("")}
-            >
+            <p className="clear-filters-button" onClick={handleClearFilter}>
               Clear All
             </p>
           </div>
@@ -332,38 +350,52 @@ function Cards({ categoryData, categoryTitle }) {
               onClick={() => setShowSortDropdown((prev) => !prev)}
               className="sort-by"
             >
-              {currentSort == "relevance" && "Relevance"}
-              {currentSort == "price_asc" && "Price : Low to High"}
-              {currentSort == "price_desc" && "Price : High to Low"}
+              {!searchParams.get("sort") && "Relevance"}
+              {searchParams.get("sort") &&
+                searchParams.get("sort").includes("price_asc") &&
+                "Price : Low to High"}
+              {searchParams.get("sort") &&
+                searchParams.get("sort").includes("price_desc") &&
+                "Price : High to Low"}
             </p>
+
             <div
               className="sorting-dropdown"
               style={{ display: showSortDropdown ? "flex" : "none" }}
             >
-              <p
+              <button
+                value="relevance"
                 className={
-                  currentSort == "relevance" ? " sort-by active" : "sort-by"
+                  searchParams.get("sort") ? "sort-by" : "sort-by active"
                 }
-                onClick={() => setCurrentSort("relevance")}
+                onClick={handleSortChange}
               >
                 Relevance
-              </p>
-              <p
+              </button>
+              <button
+                value="price_asc"
                 className={
-                  currentSort == "price_asc" ? " sort-by active" : "sort-by"
+                  searchParams.get("sort") &&
+                  searchParams.get("sort").includes("price_asc")
+                    ? "sort-by active"
+                    : "sort-by"
                 }
-                onClick={() => setCurrentSort("price_asc")}
+                onClick={handleSortChange}
               >
                 Price : Low to High
-              </p>
-              <p
+              </button>
+              <button
+                value="price_desc"
                 className={
-                  currentSort == "price_desc" ? " sort-by active" : "sort-by"
+                  searchParams.get("sort") &&
+                  searchParams.get("sort").includes("price_desc")
+                    ? "sort-by active"
+                    : "sort-by"
                 }
-                onClick={() => setCurrentSort("price_desc")}
+                onClick={handleSortChange}
               >
                 Price : High to Low
-              </p>
+              </button>
             </div>
           </div>
           <div className="all-cards">
@@ -406,7 +438,13 @@ function Cards({ categoryData, categoryTitle }) {
                   <div className="heart">
                     <HeartIcon index={index} />
                   </div>
-                  <p className="products-price">₹{item.price}</p>
+                  <p className="products-price">
+                    {item.price.toLocaleString("en-IN", {
+                      minimumFractionDigits: 0,
+                      style: "currency",
+                      currency: "INR",
+                    })}
+                  </p>
                   <p className="products-name">{item.name}</p>
                 </div>
               ))
