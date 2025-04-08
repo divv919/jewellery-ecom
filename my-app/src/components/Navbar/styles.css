@@ -1,72 +1,90 @@
+.nav-container {
+  /* height: 50px; */
+  height: 11vh;
+  background-color: red;
+  width: 100%;
+}
+.navbar {
+  box-sizing: border-box;
+  padding: 2%;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 11vh;
+  z-index: 1000;
+  background-color: #fef9e1;
 
-.nav-container{
-    /* height: 50px; */
-    height: 100px;
-    width: 100%;
-   }
-   .navbar {
-    box-sizing: border-box;
-    padding: 50px;
-     position: fixed;
-     width: 100%;
-     top:0;
-     height: 100px;
-     z-index: 1000;
-     background-color: white;
-     font-size: 30px;
-     display: flex;
-     justify-content: space-between; 
-     align-items: center; 
-     /* padding: 30px 20px ;  */
-     color: black;
-     /* margin: -8px; */
-     box-shadow: 0 0 20px rgba(0,0,0,0.1);
-     /* margin-left: -50px; */
+  font-size: 150%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 30px 20px ;  */
+  color: black;
+  /* margin: -8px; */
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+  /* margin-left: -50px; */
+}
+.logo img {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  margin: 0;
+}
+.navbar p {
+  /* font-size: 40px; */
+  cursor: pointer;
+  color: #ff9d23;
 
-   }
-   .navbar p{
-   /* font-size: 40px; */
-   cursor: pointer;
-   color: #FF9D23;
+  /* padding-left: 40px; */
+}
 
+#contactNav {
+  border-radius: 2px;
+  padding: 8px;
+  border: 2px solid #ff9d23;
+}
 
-   /* padding-left: 40px; */
-   }
-   
-   #contactNav{
-     border-radius: 2px;
-     padding: 8px;
-     border: 2px solid black;
-   }
-   
-   #contactNav:hover{
-     transition: all 0.2s ease-out;
-     border-color: orange;
-     background-color: orange;
-     color: white;
-   }
-   
-   .navbar a{
-     cursor: pointer;
-     
-   
-   }
-   .border-effect{
-     margin-top: 8px;
-     border-bottom: 1px solid transparent;
-     /* box-sizing: border-box; */
-   padding-bottom: 3px;
-   }
-   .border-effect:hover{
-     transition: all 0.2s ease-out;
-     border-bottom: 4px solid orange;
-     color: orange;
-     padding-bottom: 0px;
-   }
-   
-   .navbar .options {
-   
-     display: flex;
-     gap: 20px; 
-   }
-   
+#contactNav:hover {
+  transition: all 0.2s ease-out;
+  border-color: orange;
+  background-color: orange;
+  color: white;
+}
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.logo p,
+.logo .logo-title {
+  margin: 0 2%;
+  text-wrap: nowrap;
+  font-family: "Cinzel";
+  font-weight: 500;
+  padding: 0;
+}
+.navbar a {
+  cursor: pointer;
+  font-size: 90%;
+  color: #ff9d23;
+  font-family: "Montserrat";
+  font-weight: 400;
+}
+.border-effect {
+  margin-top: 8px;
+  border-bottom: 1px solid transparent;
+  /* box-sizing: border-box; */
+  padding-bottom: 4px;
+}
+.border-effect:hover {
+  transition: all 0.2s ease-out;
+  border-bottom: 3px solid orange;
+
+  padding-bottom: 0px;
+}
+
+.navbar .options {
+  display: flex;
+  gap: 20px;
+}
