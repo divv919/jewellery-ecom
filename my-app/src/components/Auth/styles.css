@@ -1,20 +1,72 @@
-.auth-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: black; */
-    padding: 20px;
-    box-sizing: border-box;
-
-}
-.auth-info{
-    background-color: red;
-    height : 500px;
-    width: 30%;
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://www.candere.com/static/version1744086940/frontend/Codilar/candere_desktop/en_US/images/loginBg.jpg");
+  background-size: cover;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.auth-cred{
-    background-color: blue;
-    height : 500px;
-    width: 40%;
+.auth-card {
+  background-color: #fef9e1;
+  height: 70vh;
+  width: 40vw;
+  border-radius: 1%;
+  display: flex;
+  flex-direction: row;
+}
+
+.auth-card-image {
+  height: 100%;
+  width: 45%;
+}
+.auth-card-image img {
+  height: 100%;
+  width: 100%;
+  border-radius: 1%;
+
+  /* object-fit: cover; */
+}
+.auth-card-buttons {
+  height: 100%;
+  width: 55%;
+  padding: 2%;
+  box-sizing: border-box;
+}
+
+p.auth-card-buttons-title {
+  font-family: "Cormorant", serif;
+  color: #ff9d23;
+  font-size: 200%;
+  font-weight: 600;
+  margin: 2% 0;
+}
+p.auth-card-buttons-subtitle {
+  color: #6e7191;
+  font-weight: 400;
+}
+
+.auth-card-button-google {
+  /* margin: 30% 25%; */
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  font-size: 120%;
+  height: 15%;
+  background-color: white;
+  border: 1px solid #ccc;
+  color: #6e7191;
+  margin: 40% 0;
+  border-radius: 10px;
+}
+.google-logo {
+  height: 30%;
+  /* width: 10%; */
 }
