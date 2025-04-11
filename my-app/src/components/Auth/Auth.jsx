@@ -1,5 +1,4 @@
 import "./styles.css";
-import { Outlet } from "react-router-dom";
 export default function Auth() {
   return (
     <div className="auth-container">
@@ -13,7 +12,12 @@ export default function Auth() {
             To enjoy a seamless experience while shopping
           </p>
 
-          <button className="auth-card-button-google">
+          <button
+            className="auth-card-button-google"
+            onClick={() => {
+              window.location.href = "http://localhost:3000/api/auth/google";
+            }}
+          >
             <img
               className="google-logo"
               src="https://www.candere.com/static/version1744086940/frontend/Codilar/candere_desktop/en_US/Codilar_SocialLogin/images/google.svg"

@@ -18,6 +18,7 @@ import Orders from "./components/Orders/Orders";
 import AuthPage from "./pages/AuthPage";
 import Login from "./components/Login/Login";
 import SignUp from "./components/Signup/Signup";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
       { path: "search", element: <SearchResultsPage /> },
       {
         path: "account",
-        element: <AccountPage />,
+        element: (
+          <PrivateRoute>
+            <AccountPage />
+          </PrivateRoute>
+        ),
         children: [
           { index: true, element: <Navigate to="accountInfo" replace /> },
           { path: "favorites", element: <Favourites /> },

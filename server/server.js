@@ -29,6 +29,10 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      sameSite: "lax",
+      secure: false,
+    },
   })
 );
 
@@ -45,9 +49,27 @@ const syncDatabase = async () => {
 };
 connectDB();
 syncDatabase();
+app.get("/api/auth/check", (req, res) => {
+  res.json({ authenticated: req.isAuthenticated(), user: req.user || null });
+});
 
-// app.use("/api/auth/google");
-// app.use("/api/auth/google/cb");
+app.get(
+  "/api/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+app.get(
+  "/api/auth/google/cb",
+  passport.authenticate(
+    "google",
+    {
+      successRedirect: "http://localhost:5173",
+      failureRedirect: "http://localhost:5173/auth",
+    },
+    (req, res) => {
+      debugger;
+    }
+  )
+);
 // app.use("/api/login");
 // app.use("/api/register");
 app.use("/api/products", productRoutes);
@@ -57,34 +79,38 @@ app.use("/api/productInfo/", productInfoRoute);
 app.get("/", (req, res) => {
   res.send("<h1>Hello</h1>");
 });
-
 passport.use(
   "google",
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "",
+      callbackURL: "http://localhost:3000/api/auth/google/cb",
       scope: ["profile", "email"],
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     async (accessToken, refreshToken, profile, cb) => {
+      debugger;
       try {
-        const result = await User.findAll({
-          attributes: ["email"],
+        const result = await User.findOne({
+          attributes: ["user_id"],
           where: {
             email: profile.email,
           },
         });
-        if (result.rows[0].length === 0) {
+        debugger;
+        if (result) {
+          return cb(null, { user_id: result.get("user_id") });
+        } else {
           const { user_id } = User.create({
             email: profile.email,
+            first_name: profile.given_name,
+            last_name: profile.family_name,
+            username: profile.given_name,
           });
           return cb(null, { user_id: user_id });
-        } else {
-          return cb(null, { user_id: result.rows[0].user_id });
         }
-      } catch {
+      } catch (err) {
         return cb(err);
       }
     }
@@ -92,13 +118,14 @@ passport.use(
 );
 
 passport.serializeUser((user_id_detail, cb) => {
+  debugger;
   cb(null, user_id_detail);
 });
 passport.deserializeUser(async (user_id_detail, cb) => {
   const result = await User.findAll({
     where: { user_id: user_id_detail.user_id },
   });
-  cb(null, result.rows[0]);
+  cb(null, result);
 });
 
 app.listen(PORT, () => {

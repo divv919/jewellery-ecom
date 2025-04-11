@@ -20,9 +20,21 @@ function Navbar() {
             <p className="logo-title">Premium Jewellery</p>
           </div>
           <div className="options">
-            <a className="border-effect">Favourites</a>
-            <a className="border-effect">Cart</a>
-            <a className="border-effect">Account</a>
+            <a
+              className="border-effect"
+              onClick={() => navigate("/account/favorites")}
+            >
+              Favourites
+            </a>
+            <a className="border-effect" onClick={() => navigate("/cart")}>
+              Cart
+            </a>
+            <a
+              className="border-effect"
+              onClick={() => navigate("/account/accountInfo")}
+            >
+              Account
+            </a>
             <a id="contactNav" onClick={handleClick}>
               Contact
             </a>
