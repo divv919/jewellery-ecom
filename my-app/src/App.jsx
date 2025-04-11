@@ -1,16 +1,17 @@
-import './App.css'
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/Footer/Footer'
-import {Outlet} from 'react-router-dom' 
+import "./App.css";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import { Outlet } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 function App() {
   return (
     <>
-    <Navbar />
-    <Outlet />
-    <Footer />
-    
+      <ScrollToTop />
+      <Navbar />
+      <Outlet />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

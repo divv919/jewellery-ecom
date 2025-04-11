@@ -59,16 +59,10 @@ app.get(
 );
 app.get(
   "/api/auth/google/cb",
-  passport.authenticate(
-    "google",
-    {
-      successRedirect: "http://localhost:5173",
-      failureRedirect: "http://localhost:5173/auth",
-    },
-    (req, res) => {
-      debugger;
-    }
-  )
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:5173",
+    failureRedirect: "http://localhost:5173/auth",
+  })
 );
 // app.use("/api/login");
 // app.use("/api/register");
@@ -90,7 +84,6 @@ passport.use(
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     async (accessToken, refreshToken, profile, cb) => {
-      debugger;
       try {
         const result = await User.findOne({
           attributes: ["user_id"],
@@ -98,8 +91,8 @@ passport.use(
             email: profile.email,
           },
         });
-        debugger;
         if (result) {
+          console.log("Working before returning");
           return cb(null, { user_id: result.get("user_id") });
         } else {
           const { user_id } = User.create({
@@ -111,6 +104,7 @@ passport.use(
           return cb(null, { user_id: user_id });
         }
       } catch (err) {
+        console.error("Error with strategy", err);
         return cb(err);
       }
     }
@@ -118,13 +112,14 @@ passport.use(
 );
 
 passport.serializeUser((user_id_detail, cb) => {
-  debugger;
+  console.log("serialize");
   cb(null, user_id_detail);
 });
 passport.deserializeUser(async (user_id_detail, cb) => {
   const result = await User.findAll({
     where: { user_id: user_id_detail.user_id },
   });
+  console.log("deserialize");
   cb(null, result);
 });
 

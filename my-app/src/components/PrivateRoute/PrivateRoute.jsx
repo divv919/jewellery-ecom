@@ -20,8 +20,7 @@ const PrivateRoute = ({ children }) => {
     };
     checkAuth();
   }, []);
-  if (loading) return <h1>Loading...</h1>;
-  console.log(isAuth);
+
   return isAuth ? children : <Navigate to="/auth" />;
 };
 
