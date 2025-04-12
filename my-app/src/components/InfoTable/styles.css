@@ -1,0 +1,34 @@
+th p {
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  font-size: 150%;
+  color: #ff9d23;
+  font-family: "Cormorant", serif;
+  /* text-align: ; */
+  /* width: 100%; */
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin: 2%;
+}
+
+.info-value-col p {
+  color: #6e7191;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: end;
+  padding: 10px 0;
+  font-size: 120%;
+  margin: 0;
+  box-sizing: border-box;
+}
+.info-label-col p {
+  color: #242330;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  font-size: 120%;
+  margin: 0;
+  box-sizing: border-box;
+}

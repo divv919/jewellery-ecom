@@ -1,9 +1,10 @@
 import "./styles.css";
-import Image from "../Image/Image";
-import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useFetch } from "../../hooks/useFetch";
 import SectionHeader from "../SectionHeader/SectionHeader";
+import InfoTable from "../InfoTable/InfoTable";
+import Image from "../Image/Image";
+import formatCurrency from "../../utils/formatCurrency";
 export default function ProductShow() {
   const params = useParams();
   const { data, isLoading, error, reFetch } = useFetch(
@@ -26,12 +27,64 @@ export default function ProductShow() {
     );
   }
 
+  const gstAmount =
+    ((data.diamond_price + data.making_charges + data.metal_price) * data.gst) /
+    100;
+
+  const hasDiamonds = data.number_of_diamonds && data.number_of_diamonds > 0;
+
+  const productInfoSections = [
+    {
+      infoHeading: "General Details",
+      infoItems: [
+        { label: "Jewellery Type", value: data.type },
+        { label: "Size", value: data.size },
+        { label: "Occasion", value: data.occasion },
+        { label: "Gender", value: data.gender },
+      ],
+    },
+    {
+      infoHeading: "Material Details",
+      infoItems: [
+        { label: "Metal Type", value: data.metal_type },
+        { label: "Metal Weight", value: data.metal_weight },
+        { label: "Karatage", value: data.karatage },
+        ...(hasDiamonds
+          ? [
+              { label: "Number of Diamonds", value: data.number_of_diamonds },
+              { label: "Diamond Weight", value: data.diamond_weight },
+              { label: "Diamond Shape", value: data.diamond_shape },
+              { label: "Diamond Color", value: data.diamond_color },
+              { label: "Diamond Clarity", value: data.diamond_clarity },
+            ]
+          : []),
+      ],
+    },
+    {
+      infoHeading: "Price Breakup",
+      infoItems: [
+        { label: "Metal Price", value: formatCurrency(data.metal_price) },
+        { label: "Making Charges", value: formatCurrency(data.making_charges) },
+        ...(hasDiamonds
+          ? [
+              {
+                label: "Diamond Price",
+                value: formatCurrency(data.diamond_price),
+              },
+            ]
+          : []),
+        { label: "GST (3%)", value: formatCurrency(gstAmount) },
+        { label: "Total Price", value: formatCurrency(data.price) },
+      ],
+    },
+  ];
+
   return (
     <div>
       <div style={{ display: "flex" }}>
         <div className="product-image-section">
-          {data.images.map((img) => (
-            <img src={img.image_url} />
+          {data.images.map((img, index) => (
+            <img key={index} src={img.image_url} />
           ))}
         </div>
 
@@ -70,188 +123,12 @@ export default function ProductShow() {
         </div>
         <div className="product-info-description">" {data.description} "</div>
         <div className="product-info">
-          <div className="product-info-details">
-            <table>
-              <tr>
-                <td>
-                  <p>Number of Diamonds</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.number_of_diamonds}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Diamond Weight</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.diamond_weight}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Diamond Shape</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.diamond_shape}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Diamond Color</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.diamond_color}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Diamond Clarity</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.diamond_clarity}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Metal Type</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.metal_type}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Metal Weight</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.metal_weight}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Karatage</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.karatage}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Jewellery Type</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.type}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Size</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.size}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Occasion</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.occasion}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Gender</p>
-                </td>
-                <td className="product-info-value">
-                  <p>{data.gender}</p>
-                </td>
-              </tr>
-            </table>
-          </div>
-
-          <div className="product-info-price-breakup">
-            <table>
-              <tr>
-                <td>
-                  <p>Metal Price</p>
-                </td>
-                <td className="product-info-value">
-                  <p>
-                    {data.metal_price.toLocaleString("en-IN", {
-                      style: "currency",
-                      currency: "INR",
-                      maximumFractionDigits: 0,
-                    })}
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Diamond Price</p>
-                </td>
-                <td className="product-info-value">
-                  <p>
-                    {data.diamond_price.toLocaleString("en-IN", {
-                      style: "currency",
-                      currency: "INR",
-                      maximumFractionDigits: 0,
-                    })}
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Making Charges</p>
-                </td>
-                <td className="product-info-value">
-                  <p>
-                    {data.making_charges.toLocaleString("en-IN", {
-                      style: "currency",
-                      currency: "INR",
-                      maximumFractionDigits: 0,
-                    })}
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>GST (3%)</p>
-                </td>
-                <td className="product-info-value">
-                  <p>
-                    {(
-                      (data.metal_price +
-                        data.diamond_price +
-                        data.making_charges) *
-                      0.03
-                    ).toLocaleString("en-IN", {
-                      style: "currency",
-                      currency: "INR",
-                      maximumFractionDigits: 0,
-                    })}
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Total Price</p>
-                </td>
-                <td className="product-info-value">
-                  <p>
-                    {data.price.toLocaleString("en-IN", {
-                      style: "currency",
-                      currency: "INR",
-                      maximumFractionDigits: 0,
-                    })}
-                  </p>
-                </td>
-              </tr>
-            </table>
-          </div>
+          {productInfoSections.map((item, index) => (
+            <InfoTable data={item} key={index} />
+          ))}
         </div>
       </div>
+      <div className="product-review-section"></div>
     </div>
   );
 }
