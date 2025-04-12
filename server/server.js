@@ -92,7 +92,6 @@ passport.use(
           },
         });
         if (result) {
-          console.log("Working before returning");
           return cb(null, { user_id: result.get("user_id") });
         } else {
           const { user_id } = User.create({
@@ -112,14 +111,12 @@ passport.use(
 );
 
 passport.serializeUser((user_id_detail, cb) => {
-  console.log("serialize");
   cb(null, user_id_detail);
 });
 passport.deserializeUser(async (user_id_detail, cb) => {
   const result = await User.findAll({
     where: { user_id: user_id_detail.user_id },
   });
-  console.log("deserialize");
   cb(null, result);
 });
 

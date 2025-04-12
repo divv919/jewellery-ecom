@@ -98,6 +98,7 @@ body {
 }
 .product-info-section {
   display: flex;
+  height: auto;
   flex-direction: column;
   align-items: center;
   margin: 2%;
@@ -106,7 +107,7 @@ body {
   margin-top: 2%;
   width: 100%;
 }
-.product-info {
+.product-info-description {
   margin: 3%;
   font-family: "Cormorant";
   text-align: center;
@@ -114,4 +115,43 @@ body {
   width: 100%;
   font-size: 140%;
   font-weight: 500;
+}
+
+.product-info {
+  /* background-color: blue; */
+  /* height: 60vh; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.product-info-price-breakup {
+  width: 35%;
+  /* mheight: 100%; */
+  /* background-color: red; */
+  padding: 2%;
+  box-sizing: border-box;
+}
+.product-info-details {
+  width: 65%;
+  padding: 2%;
+  box-sizing: border-box;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+}
+
+.product-info-value p {
+  text-align: end;
+  /* color: red; */
+  color: #242330;
+}
+table p {
+  padding: 10px 0;
+  margin: 1% 0;
+  color: #6e7191;
+  font-size: 120%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }

@@ -1,4 +1,4 @@
-import staticData from "../../assets/staticData";
+// import staticData from "../../assets/staticData";
 import ContactForm from "../ContactForm/ContactForm";
 import { useState } from "react";
 import "./styles.css";

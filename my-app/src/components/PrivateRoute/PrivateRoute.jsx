@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 const PrivateRoute = ({ children }) => {
-  const [isAuth, setIsAuth] = useState(null);
+  const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -11,16 +11,17 @@ const PrivateRoute = ({ children }) => {
           credentials: "include",
         });
         const res = await result.json();
+
         setIsAuth(res.authenticated);
       } catch (err) {
-        setIsAuth(false);
+        console.log("Is error");
       } finally {
         setLoading(false);
       }
     };
     checkAuth();
   }, []);
-
+  if (loading) return null;
   return isAuth ? children : <Navigate to="/auth" />;
 };
 

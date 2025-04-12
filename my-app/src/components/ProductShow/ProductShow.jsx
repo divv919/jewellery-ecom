@@ -68,7 +68,189 @@ export default function ProductShow() {
             subtitle="Know your product"
           />
         </div>
-        <div className="product-info">" {data.description} "</div>
+        <div className="product-info-description">" {data.description} "</div>
+        <div className="product-info">
+          <div className="product-info-details">
+            <table>
+              <tr>
+                <td>
+                  <p>Number of Diamonds</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.number_of_diamonds}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Diamond Weight</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.diamond_weight}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Diamond Shape</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.diamond_shape}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Diamond Color</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.diamond_color}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Diamond Clarity</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.diamond_clarity}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Metal Type</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.metal_type}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Metal Weight</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.metal_weight}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Karatage</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.karatage}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Jewellery Type</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.type}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Size</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.size}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Occasion</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.occasion}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Gender</p>
+                </td>
+                <td className="product-info-value">
+                  <p>{data.gender}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div className="product-info-price-breakup">
+            <table>
+              <tr>
+                <td>
+                  <p>Metal Price</p>
+                </td>
+                <td className="product-info-value">
+                  <p>
+                    {data.metal_price.toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                      maximumFractionDigits: 0,
+                    })}
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Diamond Price</p>
+                </td>
+                <td className="product-info-value">
+                  <p>
+                    {data.diamond_price.toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                      maximumFractionDigits: 0,
+                    })}
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Making Charges</p>
+                </td>
+                <td className="product-info-value">
+                  <p>
+                    {data.making_charges.toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                      maximumFractionDigits: 0,
+                    })}
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>GST (3%)</p>
+                </td>
+                <td className="product-info-value">
+                  <p>
+                    {(
+                      (data.metal_price +
+                        data.diamond_price +
+                        data.making_charges) *
+                      0.03
+                    ).toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                      maximumFractionDigits: 0,
+                    })}
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Total Price</p>
+                </td>
+                <td className="product-info-value">
+                  <p>
+                    {data.price.toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                      maximumFractionDigits: 0,
+                    })}
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );
