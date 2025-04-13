@@ -32,11 +32,3 @@ table {
   margin: 0;
   box-sizing: border-box;
 }
-.product-review-section {
-  color: red;
-}
-
-p.rating-number {
-  font-weight: 200;
-  color: red;
-}

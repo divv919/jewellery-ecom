@@ -31,6 +31,13 @@ export default async (req, res) => {
         {
           model: models.ProductReview,
           as: "reviews",
+          include: [
+            {
+              model: models.User,
+              as: "user",
+              attributes: ["created_at", "username", "first_name", "last_name"],
+            },
+          ],
         },
         {
           model: models.ProductImage,

@@ -145,7 +145,54 @@ export default function ProductShow() {
           ))}
         </div>
       </div>
-      <div className="product-review-section"></div>
+      <div className="product-review-complete-section">
+        <div className="product-review-header">
+          <SectionHeader
+            title="Product Reviews"
+            subtitle="See what others say about this product"
+          />
+        </div>
+        <div className="product-review-section">
+          <div className="product-all-ratings">
+            <p className="average-rating-title">Average Rating</p>
+            <p className="average-rating-number"> {data.rating} /5</p>
+            <p className="total-review-number">{data.reviews.length} reviews</p>
+          </div>
+          <div className="product-all-reviews">
+            <p className="product-all-reviews-header">Reviews</p>
+            {data.reviews.map((review) => {
+              return (
+                <div className="product-all-reviews-review-info">
+                  <div className="user-review-personal-details">
+                    <div className="user-review-personal-section">
+                      <div className="user-review-name-section">
+                        <p className="user-review-full-name">
+                          {review.user.first_name} {review.user.last_name}
+                        </p>
+                        <p className="user-review-username">
+                          @{review.user.username}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="user-review-created-at">
+                          {new Date(review.user.created_at).toLocaleDateString(
+                            "en-IN"
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="user-review-rating">
+                    {review.rating}
+                    <StarIcon fontSize="small" />
+                  </p>
+                  <p className="user-review-comment">{review.comment}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
