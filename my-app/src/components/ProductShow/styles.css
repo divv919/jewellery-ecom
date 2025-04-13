@@ -16,6 +16,7 @@ body {
 }
 .product-details-section {
   background-color: #f5f5f5;
+  /* background-color: red; */
   /* height: 500px; */
   width: 35%;
   padding: 2%;
@@ -45,6 +46,7 @@ body {
   border: 0;
   border-radius: 8px;
   color: white;
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.1);
 }
 .product-info-section {
   background-color: white;
@@ -55,10 +57,12 @@ body {
 .product-name {
   /* background-color: pink; */
   color: #ff9d23;
+  margin-bottom: 10%;
 }
 .product-price {
   /* background-color: aqua; */
   color: #ff9d23;
+  margin: 10% 0;
 }
 .product-rating-section {
   /* background-color: ; */
@@ -123,4 +127,30 @@ body {
   flex-direction: row;
   justify-content: space-around;
   align-items: start;
+}
+
+.product-rating-summary {
+  /* width: 30%; */
+
+  background-color: white;
+  border: 0px solid gray;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 8px;
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.1);
+  color: #ff9d23;
+}
+.product-activity-buttons button {
+  background-color: white;
+  border: 0px solid gray;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.1);
+  color: #6e7191;
 }

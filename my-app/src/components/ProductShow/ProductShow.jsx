@@ -5,6 +5,9 @@ import SectionHeader from "../SectionHeader/SectionHeader";
 import InfoTable from "../InfoTable/InfoTable";
 import Image from "../Image/Image";
 import formatCurrency from "../../utils/formatCurrency";
+import ShareIcon from "@mui/icons-material/Share";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import StarIcon from "@mui/icons-material/Star";
 export default function ProductShow() {
   const params = useParams();
   const { data, isLoading, error, reFetch } = useFetch(
@@ -93,10 +96,24 @@ export default function ProductShow() {
             <h2>{data.name}</h2>
           </div>
           <div className="product-rating-section">
-            <p>{data.rating} stars</p>
+            <div className="product-rating">
+              <button className="product-rating-summary">
+                <p
+                  className="rating-number"
+                  style={{ color: "black", fontWeight: "400" }}
+                >
+                  {data.rating}
+                </p>
+                <StarIcon fontSize="small" />
+              </button>
+            </div>
             <div className="product-activity-buttons">
-              <button>Share</button>
-              <button>Wishlist</button>
+              <button>
+                <ShareIcon fontSize="small" />
+              </button>
+              <button>
+                <FavoriteBorderIcon fontSize="small" />
+              </button>
             </div>
           </div>
           <div className="product-price">
