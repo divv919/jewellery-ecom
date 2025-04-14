@@ -9,13 +9,18 @@ import ShareIcon from "@mui/icons-material/Share";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
+import { useState } from "react";
 export default function ProductShow() {
+  const [currentPage, setCurrentPage] = useState(1);
   const params = useParams();
   const { data, isLoading, error, reFetch } = useFetch(
     `http://localhost:3000/api/productInfo/${params.id}`
   );
+  const reviewsData = useFetch(
+    `http://localhost:3000/api/productInfo/${params.id}/reviews?page=${currentPage}`
+  );
 
-  if (isLoading) {
+  if (reviewsData.isLoading) {
     return (
       <>
         <h1>Loading..</h1>
@@ -23,7 +28,7 @@ export default function ProductShow() {
     );
   }
 
-  if (error) {
+  if (reviewsData.error) {
     return (
       <>
         <h1>error..</h1>
@@ -82,8 +87,9 @@ export default function ProductShow() {
       ],
     },
   ];
+
   const starCount = Array(5).fill(0);
-  data.reviews.forEach((element) => {
+  reviewsData.data.reviews.forEach((element) => {
     starCount[5 - element.rating]++;
   });
 
@@ -161,7 +167,9 @@ export default function ProductShow() {
           <div className="product-all-ratings">
             <p className="average-rating-title">Average Rating</p>
             <p className="average-rating-number"> {data.rating} /5</p>
-            <p className="total-review-number">{data.reviews.length} reviews</p>
+            <p className="total-review-number">
+              {reviewsData.data.totalPages} reviews
+            </p>
 
             <div className="average-rating-showcase">
               <div className="average-rating-stars-border">
@@ -194,7 +202,9 @@ export default function ProductShow() {
                         <div
                           className="rating-bar"
                           style={{
-                            width: `${(count / data.reviews.length) * 100}%`,
+                            width: `${
+                              (count / reviewsData.data.reviews.length) * 100
+                            }%`,
                           }}
                         ></div>
                       </div>
@@ -206,8 +216,11 @@ export default function ProductShow() {
             </div>
           </div>
           <div className="product-all-reviews">
-            <p className="product-all-reviews-header">Reviews</p>
-            {data.reviews.map((review) => {
+            <p className="product-all-reviews-header">
+              Reviews
+              {/* <button onClick={() => setCurrentPage(currentPage + 1)}></button> */}
+            </p>
+            {reviewsData.data.reviews.map((review) => {
               return (
                 <div className="product-all-reviews-review-info">
                   <div className="user-review-personal-details">
@@ -237,6 +250,19 @@ export default function ProductShow() {
                 </div>
               );
             })}
+            <div
+              className="test"
+              onClick={() => {
+                setCurrentPage(
+                  currentPage === reviewsData.data.totalPages
+                    ? 1
+                    : currentPage + 1
+                );
+              }}
+            >
+              Next Page
+            </div>
+            <div className="current-page">{reviewsData.data.currentPage}</div>
           </div>
         </div>
       </div>

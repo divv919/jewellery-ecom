@@ -171,7 +171,7 @@ body {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  height: 100%;
+  height: auto;
   min-height: 50vh;
   gap: 4vh;
   box-sizing: border-box;
@@ -245,6 +245,9 @@ body {
   margin: 0;
 }
 .user-review-rating {
+  background-color: #fef9e1;
+  /* background-color: red; */
+  width: max-content;
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -253,6 +256,9 @@ body {
   font-size: 120%;
   margin: 2% 0;
   color: #ff9d23;
+  padding: 4px 10px;
+
+  border-radius: 20px;
 }
 .user-review-comment {
   margin: 0;
@@ -262,7 +268,7 @@ body {
 .product-all-reviews-review-info {
   /* margin: 5px 0; */
   padding: 5px 0;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #ccc;
 }
 
 .product-all-reviews-header {
@@ -381,7 +387,7 @@ body {
 .visualizer-window {
   width: 80%;
   border-radius: 6px;
-  background-color: gray;
+  background-color: #ccc;
   height: 30%;
   overflow: hidden;
   /* position: relative; */
@@ -397,4 +403,11 @@ body {
   height: 100%;
   /* position: absolute; */
   background-color: #ff9d23;
+}
+
+.test {
+  background-color: gray;
+  height: 50px;
+  width: 50px;
+  margin: 10px 0;
 }
