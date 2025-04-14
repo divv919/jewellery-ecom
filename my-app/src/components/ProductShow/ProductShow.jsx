@@ -7,6 +7,7 @@ import Image from "../Image/Image";
 import formatCurrency from "../../utils/formatCurrency";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 export default function ProductShow() {
   const params = useParams();
@@ -157,6 +158,26 @@ export default function ProductShow() {
             <p className="average-rating-title">Average Rating</p>
             <p className="average-rating-number"> {data.rating} /5</p>
             <p className="total-review-number">{data.reviews.length} reviews</p>
+
+            <div className="average-rating-showcase">
+              <div className="average-rating-stars-border">
+                <StarBorderIcon />
+                <StarBorderIcon />
+                <StarBorderIcon />
+                <StarBorderIcon />
+                <StarBorderIcon />
+              </div>
+              <div
+                className="average-rating-stars-filled"
+                style={{ width: `${(data.rating / 5) * 100}%` }}
+              >
+                <StarIcon />
+                <StarIcon />
+                <StarIcon />
+                <StarIcon />
+                <StarIcon />
+              </div>
+            </div>
           </div>
           <div className="product-all-reviews">
             <p className="product-all-reviews-header">Reviews</p>
