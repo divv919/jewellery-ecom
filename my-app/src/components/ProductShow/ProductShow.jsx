@@ -82,6 +82,10 @@ export default function ProductShow() {
       ],
     },
   ];
+  const starCount = Array(5).fill(0);
+  data.reviews.forEach((element) => {
+    starCount[5 - element.rating]++;
+  });
 
   return (
     <div>
@@ -177,6 +181,28 @@ export default function ProductShow() {
                 <StarIcon />
                 <StarIcon />
               </div>
+            </div>
+            <div className="rating-count-showcase">
+              {starCount.map((count, index) => {
+                return (
+                  <div className="star-rating-count">
+                    <div className="star-rating-value">
+                      {5 - index} <StarIcon fontSize="small" />
+                    </div>
+                    <div className="star-rating-visualizer">
+                      <div className="visualizer-window">
+                        <div
+                          className="rating-bar"
+                          style={{
+                            width: `${(count / data.reviews.length) * 100}%`,
+                          }}
+                        ></div>
+                      </div>
+                      <div className="visualizer-count">({count})</div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="product-all-reviews">
