@@ -1,5 +1,6 @@
 import StarIcon from "@mui/icons-material/Star";
-
+import "./styles.css";
+import { Skeleton } from "@mui/material";
 const ProductAllReviews = ({
   data,
   currentPage,
@@ -17,36 +18,31 @@ const ProductAllReviews = ({
   return (
     <div className="product-all-reviews">
       <p className="product-all-reviews-header">Reviews</p>
-      {data.reviews.map((review) => {
-        return (
-          <div className="product-all-reviews-review-info">
-            <div className="user-review-personal-details">
-              <div className="user-review-personal-section">
-                <div className="user-review-name-section">
-                  <p className="user-review-full-name">
-                    {review.user.first_name} {review.user.last_name}
-                  </p>
-                  <p className="user-review-username">
-                    @{review.user.username}
-                  </p>
-                </div>
-                <div>
-                  <p className="user-review-created-at">
-                    {new Date(review.user.created_at).toLocaleDateString(
-                      "en-IN"
-                    )}
-                  </p>
-                </div>
+      {data.reviews.map((review) => (
+        <div className="product-all-reviews-review-info">
+          <div className="user-review-personal-details">
+            <div className="user-review-personal-section">
+              <div className="user-review-name-section">
+                <p className="user-review-full-name">
+                  {review.user.first_name} {review.user.last_name}
+                </p>
+                <p className="user-review-username">@{review.user.username}</p>
+              </div>
+              <div>
+                <p className="user-review-created-at">
+                  {new Date(review.user.created_at).toLocaleDateString("en-IN")}
+                </p>
               </div>
             </div>
-            <p className="user-review-rating">
-              {review.rating}
-              <StarIcon fontSize="small" />
-            </p>
-            <p className="user-review-comment">{review.comment}</p>
           </div>
-        );
-      })}
+
+          <p className="user-review-rating">
+            {review.rating}
+            <StarIcon fontSize="small" />
+          </p>
+          <p className="user-review-comment">{review.comment}</p>
+        </div>
+      ))}
       <div
         className="test"
         onClick={() => {

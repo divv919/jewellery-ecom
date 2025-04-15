@@ -1,7 +1,5 @@
 .product-image-section {
   padding: 2%;
-  background-color: #f5f5f5;
-  /* position: relative; */
   height: auto;
   width: 65%;
   display: flex;
@@ -9,10 +7,16 @@
   justify-content: center;
   flex-wrap: wrap;
   box-sizing: border-box;
-  /* gap: 2%; */
+  gap: 4%;
 }
-.product-image-section img {
-  width: 45%;
-  border-radius: 2%;
-  margin: 2%;
+
+.product-image-container {
+  width: 25vw;
+  aspect-ratio: 1/1;
+  /* max-width: 45%;
+  min-width: 45%;
+  max-height: 45%;
+  min-height: 45%; */
+  border-radius: 12px;
+  overflow: hidden;
 }

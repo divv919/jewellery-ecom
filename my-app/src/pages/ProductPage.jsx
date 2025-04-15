@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import { useFetch } from "../hooks/useFetch";
 import formatCurrency from "../utils/formatCurrency";
 import ProductDescription from "../components/ProductDescription/ProductDescription";
-import ProductReviews from "../components/ProductActions/ProductImageGallery/ProductReviews/ProductReviews";
+import ProductReviews from "../components/ProductReviews/ProductReviews";
 import ProductAction from "../components/ProductActions/ProductActions";
 export default function ProductPage() {
   const params = useParams();

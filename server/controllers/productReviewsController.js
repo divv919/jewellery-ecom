@@ -32,13 +32,12 @@ export default async (req, res) => {
       ],
       group: "rating",
     });
+
     const reviewDistribution = Array(5).fill(0);
-    let totalReviewsCount = 0;
     allReviews.forEach((review) => {
       reviewDistribution[5 - review.dataValues.rating] = Number(
         review.dataValues.count
       );
-      totalReviewsCount += Number(review.dataValues.count);
     });
 
     res.status(200).json({
@@ -47,7 +46,6 @@ export default async (req, res) => {
       perPage: limit,
       reviewDistribution: reviewDistribution,
       totalPages: Math.ceil(totalReviews / limit),
-      totalReviewsCount: totalReviewsCount,
     });
   } catch (err) {
     console.error("Error getting reviews data : ", err);

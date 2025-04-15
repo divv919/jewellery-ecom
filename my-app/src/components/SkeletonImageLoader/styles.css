@@ -1,0 +1,19 @@
+.skeleton-loader {
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  width: 100%;
+  height: 100%;
+  background-size: 200%;
+  animation: skeleton-wave 1s infinite;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+@keyframes skeleton-wave {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

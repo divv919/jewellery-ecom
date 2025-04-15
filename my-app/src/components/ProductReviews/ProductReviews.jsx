@@ -1,10 +1,10 @@
 import "./styles.css";
-import SectionHeader from "../../../SectionHeader/SectionHeader";
-import ProductRatingSummary from "../../../ProductAllReviews/ProductRatingSummary/ProductRatingSummary";
+import SectionHeader from "../SectionHeader/SectionHeader";
+import ProductRatingSummary from "./ProductRatingSummary/ProductRatingSummary";
+import ProductAllReviews from "./ProductAllReviews/ProductAllReviews";
 import { useParams } from "react-router";
-import { useFetch } from "../../../../hooks/useFetch";
+import { useFetch } from "../../hooks/useFetch";
 import { useState } from "react";
-import ProductAllReviews from "../../../ProductAllReviews/ProductAllReviews";
 
 const ProductReviews = ({ oldData }) => {
   const params = useParams();
