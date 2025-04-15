@@ -1,0 +1,33 @@
+.product-info-section {
+  background-color: white;
+  margin: 0 2.5%;
+  height: 300px;
+  /* width: 100%; */
+}
+
+.product-info-section {
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
+  margin: 2%;
+}
+
+.product-info-description {
+  margin-bottom: 3%;
+  /* background-color: red; */
+  font-family: "Cormorant";
+  text-align: center;
+  font-style: italic;
+  width: 100%;
+  font-size: 140%;
+  font-weight: 500;
+}
+
+.product-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: start;
+}

@@ -1,0 +1,18 @@
+.product-image-section {
+  padding: 2%;
+  background-color: #f5f5f5;
+  /* position: relative; */
+  height: auto;
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  /* gap: 2%; */
+}
+.product-image-section img {
+  width: 45%;
+  border-radius: 2%;
+  margin: 2%;
+}

@@ -1,0 +1,79 @@
+.product-all-reviews {
+  width: 65%;
+  background-color: white;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 2%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.product-all-reviews-header {
+  /* font-family: "Cormorant", serif; */
+  color: #ff9d23;
+  /* font-size: 120%; */
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+.product-all-reviews-review-info {
+  /* margin: 5px 0; */
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-review-full-name {
+  color: #ff9d23;
+  font-size: 120%;
+  margin: 0;
+  margin-top: 1%;
+}
+.user-review-username {
+  color: #6e7191;
+  font-weight: 300;
+  font-size: 80%;
+  margin: 0;
+}
+.user-review-rating {
+  background-color: #fef9e1;
+  /* background-color: red; */
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 2px;
+  font-size: 120%;
+  margin: 2% 0;
+  color: #ff9d23;
+  padding: 4px 10px;
+
+  border-radius: 20px;
+}
+.user-review-comment {
+  margin: 0;
+  margin-bottom: 1%;
+}
+
+.user-review-created-at {
+  padding: 0;
+  margin: 0;
+  font-size: 80%;
+  color: #6e7191;
+}
+
+.user-review-personal-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+}
+.test {
+  background-color: gray;
+  height: 50px;
+  width: 50px;
+  margin: 10px 0;
+}
