@@ -1,4 +1,4 @@
-.skeleton-loader {
+.skeleton-image-loader {
   background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
   width: 100%;
   height: 100%;
@@ -6,7 +6,11 @@
   animation: skeleton-wave 1s infinite;
   top: 0;
   left: 0;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* position: absolute; */
 }
 
 @keyframes skeleton-wave {

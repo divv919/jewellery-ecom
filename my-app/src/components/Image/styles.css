@@ -18,10 +18,11 @@
   /* position: relative; */
   background-color: #f3f3f3;
 }
-/* Show spinner centered inside */
 .spinner-wrapper {
   position: absolute;
   inset: 0;
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

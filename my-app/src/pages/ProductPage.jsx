@@ -4,6 +4,7 @@ import formatCurrency from "../utils/formatCurrency";
 import ProductDescription from "../components/ProductDescription/ProductDescription";
 import ProductReviews from "../components/ProductReviews/ProductReviews";
 import ProductAction from "../components/ProductActions/ProductActions";
+import { Skeleton } from "@mui/material";
 export default function ProductPage() {
   const params = useParams();
 
@@ -13,9 +14,54 @@ export default function ProductPage() {
 
   if (isLoading) {
     return (
-      <>
-        <h1>Loading..</h1>
-      </>
+      <div
+        className="loader-section"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          height: "150vh",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          className="right-img-section"
+          style={{
+            width: "70%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            padding: "4%",
+          }}
+        >
+          <Skeleton width="45%" height={400} variant="rectangular" />
+
+          <Skeleton width="45%" height={400} variant="rectangular" />
+        </div>
+        <div
+          className=" left-info-section"
+          style={{
+            width: "30%",
+            padding: "2%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "start",
+          }}
+        >
+          <Skeleton variant="text" width="100%" height={80} />
+          <Skeleton variant="text" width="70%" height={30} />
+          <Skeleton variant="text" width="50%" height={70} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Skeleton width="47%" height={100} />
+            <Skeleton width="47%" height={100} />
+          </div>
+        </div>
+      </div>
     );
   }
 

@@ -1,4 +1,4 @@
-import SkeletonLoader from "../SkeletonImageLoader/SkeletonImageLoader";
+import SkeletonImageLoader from "../SkeletonImageLoader/SkeletonImageLoader";
 import SpinnerLoader from "../SpinnerLoader/SpinnerLoader";
 import "./styles.css";
 import { use, useState } from "react";
@@ -8,7 +8,11 @@ export default function Image({ src }) {
 
   return (
     <div className="image-container">
-      {!isLoaded && <SkeletonLoader />}
+      {!isLoaded && (
+        <div className="spinner-wrapper">
+          <SkeletonImageLoader />
+        </div>
+      )}
 
       <img
         onError={(e) => {

@@ -1,6 +1,8 @@
 import StarIcon from "@mui/icons-material/Star";
 import "./styles.css";
 import { Skeleton } from "@mui/material";
+import SkeletonImageLoader from "../../SkeletonImageLoader/SkeletonImageLoader";
+
 const ProductAllReviews = ({
   data,
   currentPage,
@@ -10,11 +12,35 @@ const ProductAllReviews = ({
 }) => {
   if (isLoading) {
     return (
-      <div style={{ width: "65%", height: "800px", backgroundColor: "white" }}>
-        Loading
+      <div className="product-all-reviews">
+        <p className="product-all-reviews-header">Reviews</p>
+        {[...Array(4)].map((_, index) => (
+          <div
+            className="product-all-reviews-review-info"
+            style={{ margin: "20px 0" }}
+            key={index}
+          >
+            <div className="user-review-personal-details">
+              <div className="user-review-personal-section">
+                <div className="user-review-name-section">
+                  <Skeleton variant="text" width={120} height={20} />
+                  <Skeleton variant="text" width={80} height={16} />
+                </div>
+                <div>
+                  <Skeleton variant="text" width={100} height={16} />
+                </div>
+              </div>
+            </div>
+            <Skeleton variant="text" width={60} height={20} />
+            <Skeleton variant="rectangular" width="100%" height={40} />
+          </div>
+        ))}
+        <Skeleton variant="rectangular" width={100} height={30} />
+        <Skeleton variant="text" width={30} height={20} />
       </div>
     );
   }
+
   return (
     <div className="product-all-reviews">
       <p className="product-all-reviews-header">Reviews</p>

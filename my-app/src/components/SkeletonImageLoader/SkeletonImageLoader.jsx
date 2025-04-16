@@ -1,5 +1,5 @@
 import "./styles.css";
-const SkeletonLoader = () => {
-  return <div className="skeleton-loader"></div>;
+const SkeletonImageLoader = ({ children }) => {
+  return <div className="skeleton-image-loader">{children}</div>;
 };
-export default SkeletonLoader;
+export default SkeletonImageLoader;
