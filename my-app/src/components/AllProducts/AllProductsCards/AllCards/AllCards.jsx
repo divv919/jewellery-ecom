@@ -1,9 +1,19 @@
 import Image from "../../../Image/Image";
 import { Skeleton } from "@mui/material";
-const AllCards = ({ categoryData, navigate, isLoading }) => {
+import { useFetch } from "../../../../hooks/useFetch";
+import formatCurrency from "../../../../utils/formatCurrency";
+import { useState } from "react";
+const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
   function handleMouseClick(id) {
     navigate(`/product/${id}`);
   }
+  const [currentPage, setCurrentPage] = useState(1);
+  const [products, setProducts] = useState([]);
+
+  const { data, error, isLoading, reFetch } = useFetch(
+    `http://localhost:3000/api/products/${params.categoryType}/${params.categoryName}?${searchParams}&page=${currentPage}`
+  );
+
   if (isLoading) {
     return (
       <div
@@ -28,16 +38,12 @@ const AllCards = ({ categoryData, navigate, isLoading }) => {
   }
   return (
     <div className="all-cards">
-      {categoryData.length == 0 ? (
+      {data.products.length == 0 ? (
         <h1>No data</h1>
       ) : (
-        categoryData.map((item, index) => (
+        data.products.map((item, index) => (
           <div
             className="card"
-            // onMouseOver={() => handleMouseOver(index)}
-            // onMouseLeave={() => {
-            //   setActiveCard(null);
-            // }}
             onClick={() => handleMouseClick(item.id)}
             key={item.id}
           >
@@ -57,13 +63,7 @@ const AllCards = ({ categoryData, navigate, isLoading }) => {
               </div>
             </div>
 
-            <p className="products-price">
-              {item.price.toLocaleString("en-IN", {
-                minimumFractionDigits: 0,
-                style: "currency",
-                currency: "INR",
-              })}
-            </p>
+            <p className="products-price">{formatCurrency(item.price)}</p>
             <p className="products-name">{item.name}</p>
           </div>
         ))

@@ -1,14 +1,12 @@
 import Sort from "./Sort/Sort";
 import AllCards from "./AllCards/AllCards";
 import { useSearchParams } from "react-router-dom";
-const Cards = ({
-  categoryData,
-  showSortDropdown,
-  setShowSortDropdown,
-  navigate,
-  isLoading,
-}) => {
+import { useParams } from "react-router-dom";
+
+const Cards = ({ showSortDropdown, setShowSortDropdown, navigate }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const params = useParams();
+
   return (
     <div className="cards-section">
       <Sort
@@ -18,11 +16,10 @@ const Cards = ({
         searchParams={searchParams}
       />
       <AllCards
-        categoryData={categoryData}
         navigate={navigate}
         setSearchParams={setSearchParams}
         searchParams={searchParams}
-        isLoading={isLoading}
+        params={params}
       />
     </div>
   );
