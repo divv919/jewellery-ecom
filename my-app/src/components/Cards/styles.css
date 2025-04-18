@@ -328,3 +328,47 @@ p.sort-by {
 .sorting-dropdown button.active {
   color: #ff9d23;
 }
+
+.products-loader-section {
+  /* height: 200px; */
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.products-loader {
+  transition: all 1s ease;
+  margin: 2% 0;
+  background-color: #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  height: 4px;
+}
+.products-loader.active {
+  width: 25%;
+}
+
+@keyframes productsLoader {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+.products-loader.active::before {
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  background-color: #ff9d23;
+  animation: productsLoader 1s infinite ease;
+  /* z-index: -1000; */
+}
+.products-loader.inactive {
+  width: 0;
+}

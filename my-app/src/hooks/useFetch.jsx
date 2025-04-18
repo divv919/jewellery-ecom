@@ -8,9 +8,12 @@ export function useFetch(url) {
 
   async function fetchData() {
     setIsLoading(true);
+    // debugger;
+    // setData([]);
     try {
       const response = await fetch(url);
       const dataFetched = await response.json();
+      // await new Promise((resolve) => setTimeout(resolve, 10000));
       setData(dataFetched);
     } catch (err) {
       setError(err);
