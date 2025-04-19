@@ -50,7 +50,8 @@ export const getProducts = async (req, res) => {
         {
           model: models.ProductImage,
           as: "images",
-          attributes: ["image_id", "image_url"],
+          attributes: ["image_url"],
+          where: { is_primary: true },
         },
       ],
       limit: limit,
@@ -64,10 +65,7 @@ export const getProducts = async (req, res) => {
         id: product.id,
         price: product.price,
         name: product.name,
-        images: product.images.map((image) => ({
-          image_id: image.image_id,
-          image_url: image.image_url,
-        })),
+        image: product.images[0]?.image_url || null,
       };
     });
 
