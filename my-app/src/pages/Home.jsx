@@ -15,7 +15,13 @@ export default function Home() {
 
   return (
     <div>
-      <Slider sliderImage={sliderImage} />
+      <div
+        className="carousel-home-page"
+        style={{ width: "100%", aspectRatio: "5/2" }}
+      >
+        {" "}
+        <Slider sliderImage={sliderImage} />
+      </div>
       <SpecialOffer />
       {(data || []).map((category) => {
         return (

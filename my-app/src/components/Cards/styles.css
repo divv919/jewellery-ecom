@@ -165,7 +165,8 @@ fieldset {
   /* margin : 40px; */
   width: 20%;
   cursor: pointer;
-  height: 20%;
+  /* background-color: red; */
+  aspect-ratio: 4/5;
   margin: 2%;
 
   /* background-color: red; */
@@ -182,7 +183,7 @@ fieldset {
 }
 
 .card .imgview {
-  height: 80%;
+  height: 90%;
   width: 100%;
   box-sizing: border-box;
   margin: 0;

@@ -1,95 +1,92 @@
-
-.slider{
-    width: 100%;
-    height :600px;
-    overflow: hidden;
-    position: relative;
+.slider {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
-.slider-content{
-    display: flex;
-    flex-direction: row;
-    /* background-color: red; */
-    width  : 100%;
-    height : 100%;
-    /* margin-top: 100px; */
-    transition: transform 0.5s ease;
+.slider-content {
+  display: flex;
+  flex-direction: row;
+  /* background-color: red; */
+  width: 100%;
+  height: 100%;
+  /* margin-top: 100px; */
+  transition: transform 0.5s ease;
 }
-.slide{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height : 100%;
-    min-width: 100%;
-    transition: all 2s ease;
+.slide {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-width: 100%;
+  transition: all 2s ease;
 }
-.slide img{
+/* .slide img{
     object-fit: cover;
     width  : 100%;
     height : 100%;
-}
+} */
 
-.slide h1{
-    position: absolute;
+.slide h1 {
+  position: absolute;
 }
 
 .arrows {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    z-index: 10;
-    pointer-events: none; 
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .arrows span {
-    font-size: 30px;
-    color: white;
-    /* background: rgba(0, 0, 0, 0.5); */
-    padding: 10px;
-    /* border-radius: 50%; */
-    cursor: pointer;
-    pointer-events: all;
+  font-size: 30px;
+  color: white;
+  /* background: rgba(0, 0, 0, 0.5); */
+  padding: 10px;
+  /* border-radius: 50%; */
+  cursor: pointer;
+  pointer-events: all;
 }
 
 .arrows .prev {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .arrows .next {
-    margin-right: 20px;
-    border: 0px;
+  margin-right: 20px;
+  border: 0px;
 }
 
-.indicator-section{
-    position: absolute;
-    z-index: 100;
-    height: 10%;
-    width: auto;
-    /* background-color: red; */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    gap : 8%;
+.indicator-section {
+  position: absolute;
+  z-index: 100;
+  height: 10%;
+  width: auto;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  gap: 8%;
+}
+.indicator {
+  height: 0.5vh;
+  width: 4vw;
+  min-width: 10px;
 
+  border-radius: 3px;
+  background-color: #ccc;
+  /* margin: 10px; */
 }
-.indicator{
-    height: 0.5vh;
-    width: 4vw;
-    min-width: 10px;
-   
-    border-radius: 3px;
-    background-color: #ccc;
-    /* margin: 10px; */
-}
-.indicator.active{
-    background-color: #FF9D23;
- 
+.indicator.active {
+  background-color: #ff9d23;
 }

@@ -3,6 +3,8 @@ import { prerelease, Skeleton } from "@mui/material";
 import { useFetch } from "../../../../hooks/useFetch";
 import formatCurrency from "../../../../utils/formatCurrency";
 import { useEffect, useState, useCallback, useRef } from "react";
+import Slider from "../../../Carousel/Slider";
+
 const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
   function handleMouseClick(id) {
     navigate(`/product/${id}`);
@@ -110,32 +112,23 @@ const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
         </div>
       ) : (
         <div className="all-cards">
-          {productsToShow.map((item, index) => (
-            <div
-              className="card"
-              onClick={() => handleMouseClick(item.id)}
-              key={item.id}
-            >
-              <div className="imgview">
-                <div className="image-carousel">
-                  {item.images.map((i, index) => {
-                    return (
-                      <div
-                        className="img1"
-                        key={i.image_id}
-                        style={{ minHeight: "220px" }}
-                      >
-                        <Image src={i.image_url} />
-                      </div>
-                    );
-                  })}
+          {productsToShow.map((item, index) => {
+            console.log(item);
+            return (
+              <div
+                className="card"
+                onClick={() => handleMouseClick(item.id)}
+                key={item.id}
+              >
+                <div className="imgview">
+                  <Image src={item.image} />
                 </div>
-              </div>
 
-              <p className="products-price">{formatCurrency(item.price)}</p>
-              <p className="products-name">{item.name}</p>
-            </div>
-          ))}
+                <p className="products-price">{formatCurrency(item.price)}</p>
+                <p className="products-name">{item.name}</p>
+              </div>
+            );
+          })}
         </div>
       )}
       <div

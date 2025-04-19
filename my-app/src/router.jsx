@@ -19,6 +19,7 @@ import AuthPage from "./pages/AuthPage";
 import Login from "./components/Login/Login";
 import SignUp from "./components/Signup/Signup";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import { Suspense } from "react";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,7 +55,14 @@ const router = createBrowserRouter([
           { path: "accountInfo", element: <Accounts /> },
         ],
       },
-      { path: "auth", element: <AuthPage /> },
+      {
+        path: "auth",
+        element: (
+          <Suspense fallback={<div>Loading</div>}>
+            <AuthPage />
+          </Suspense>
+        ),
+      },
     ],
   },
   { path: "*", element: <NotFound /> },
