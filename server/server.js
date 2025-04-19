@@ -9,6 +9,8 @@ import GoogleStrategy from "passport-google-oauth2";
 import session from "express-session";
 import passport from "passport";
 import User from "./models/User.js";
+import AuthMiddleware from "./middleware/AuthMiddleware.js";
+import accountRoutes from "./routes/accountRoutes.js";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -69,6 +71,8 @@ app.get(
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/productInfo/", productInfoRoute);
+
+app.use("/api/accounts/", AuthMiddleware, accountRoutes);
 
 app.get("/", (req, res) => {
   res.send("<h1>Hello</h1>");

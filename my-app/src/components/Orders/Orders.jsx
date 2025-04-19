@@ -1,5 +1,3 @@
-export default function Orders(){
-    return (
-        <h1>Your orders</h1>
-    )
+export default function Orders() {
+  return <h1>Your orders</h1>;
 }
