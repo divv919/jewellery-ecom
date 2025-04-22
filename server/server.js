@@ -10,7 +10,7 @@ import session from "express-session";
 import passport from "passport";
 import User from "./models/User.js";
 import AuthMiddleware from "./middleware/AuthMiddleware.js";
-import accountRoutes from "./routes/accountRoutes.js";
+import accountRoutes from "./routes/accountRoutes/routes.js";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -40,7 +40,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(express.urlencoded({ extended: true }));
 const syncDatabase = async () => {
   try {
     await sequelize.sync({ alter: false });
@@ -118,7 +118,7 @@ passport.serializeUser((user_id_detail, cb) => {
   cb(null, user_id_detail);
 });
 passport.deserializeUser(async (user_id_detail, cb) => {
-  const result = await User.findAll({
+  const result = await User.findOne({
     where: { user_id: user_id_detail.user_id },
   });
   cb(null, result);
