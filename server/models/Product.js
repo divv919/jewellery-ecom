@@ -1,16 +1,34 @@
-import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../models/index.js';
-import Category from './Category.js';
+import { Model, DataTypes } from "sequelize";
+import { sequelize } from "../models/index.js";
+import Category from "./Category.js";
 
 class Product extends Model {
-    static associate(models) {
-        this.hasMany(models.ProductReview, { foreignKey: 'product_id', as: 'reviews' });
-        this.hasMany(models.ProductImage, { foreignKey: 'product_id', as: 'images' });
-        this.belongsTo(models.Category, { foreignKey: 'type', as: 'categoryType' });
-        this.belongsTo(models.Category,{foreignKey : 'gender', as :'categoryGender' });
-        this.belongsTo(models.Category,{foreignKey : 'occasion', as :'categoryOccasion' });
+  static associate(models) {
+    this.hasMany(models.ProductReview, {
+      foreignKey: "product_id",
+      as: "reviews",
+    });
+    this.hasMany(models.ProductImage, {
+      foreignKey: "product_id",
+      as: "images",
+    });
+    this.belongsTo(models.Category, { foreignKey: "type", as: "categoryType" });
+    this.belongsTo(models.Category, {
+      foreignKey: "gender",
+      as: "categoryGender",
+    });
+    this.belongsTo(models.Category, {
+      foreignKey: "occasion",
+      as: "categoryOccasion",
+    });
 
-      }
+    this.belongsToMany(models.User, { through: models.Favorite });
+    this.belongsToMany(models.User, { through: models.Order });
+    this.belongsToMany(models.User, { through: models.Cart });
+    this.hasMany(models.Cart, { foreignKey: "product_id" });
+    this.hasMany(models.Favorite, { foreignKey: "product_id" });
+    this.hasMany(models.Order, { foreignKey: "product_id" });
+  }
 }
 
 Product.init(
@@ -19,15 +37,15 @@ Product.init(
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true, 
+      autoIncrement: true,
     },
-    type: {
+    type_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references : {
+      references: {
         model: Category,
-        key : 'id'
-      }
+        key: "id",
+      },
     },
     name: {
       type: DataTypes.STRING(40),
@@ -65,21 +83,21 @@ Product.init(
       type: DataTypes.DOUBLE,
       allowNull: true,
     },
-    occasion: {
+    occasion_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references : {
+      references: {
         model: Category,
-        key : 'id'
-      }
+        key: "id",
+      },
     },
-    gender: {
+    gender_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references : {
+      references: {
         model: Category,
-        key : 'id'
-      }
+        key: "id",
+      },
     },
     size: {
       type: DataTypes.STRING(20),
@@ -117,35 +135,31 @@ Product.init(
       type: DataTypes.NUMERIC,
       allowNull: true,
     },
-    type : {
-      type : DataTypes.TEXT,
+    type: {
+      type: DataTypes.TEXT,
       allowNull: true,
-
     },
-    gender : {
-      type : DataTypes.TEXT,
+    gender: {
+      type: DataTypes.TEXT,
       allowNull: true,
-
     },
-    occasion : {
-      type : DataTypes.TEXT,
+    occasion: {
+      type: DataTypes.TEXT,
       allowNull: true,
-
     },
-    
-      price : {
-        type : DataTypes.TEXT,
+
+    price: {
+      type: DataTypes.TEXT,
       allowNull: true,
-      }
-    
+    },
   },
 
   {
-    sequelize, 
-    modelName: 'Product', 
-    tableName: 'products', 
-    timestamps: false, 
-    freezeTableName: true
+    sequelize,
+    modelName: "Product",
+    tableName: "products",
+    timestamps: false,
+    freezeTableName: true,
   }
 );
 

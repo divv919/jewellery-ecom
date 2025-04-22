@@ -1,9 +1,19 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
-import { sequelize } from "../models/index.js";
+import { sequelize } from "./index.js";
 
 class User extends Model {
   static associate(models) {
     this.hasMany(models.ProductReview, { foreignKey: "user_id", as: "review" });
+    this.hasOne(models.AccountInfo, {
+      foreignKey: "user_id",
+      as: "accountInfo",
+    });
+    this.belongsToMany(models.Product, { through: models.Favorite });
+    this.belongsToMany(models.Product, { through: models.Order });
+    this.belongsToMany(models.Product, { through: models.Cart });
+    this.hasMany(models.Cart, { foreignKey: "user_id" });
+    this.hasMany(models.Favorite, { foreignKey: "user_id" });
+    this.hasMany(models.Order, { foreignKey: "user_id" });
   }
 }
 User.init(
