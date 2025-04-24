@@ -22,9 +22,9 @@ class Product extends Model {
       as: "categoryOccasion",
     });
 
-    this.belongsToMany(models.User, { through: models.Favorite });
-    this.belongsToMany(models.User, { through: models.Order });
-    this.belongsToMany(models.User, { through: models.Cart });
+    // this.belongsToMany(models.User, { through: models.Favorite });
+    // this.belongsToMany(models.User, { through: models.Order });
+    // this.belongsToMany(models.User, { through: models.Cart });
     this.hasMany(models.Cart, { foreignKey: "product_id" });
     this.hasMany(models.Favorite, { foreignKey: "product_id" });
     this.hasMany(models.Order, { foreignKey: "product_id" });

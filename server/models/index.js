@@ -6,9 +6,9 @@ import Category from "./Category.js";
 import ProductImage from "./ProductImage.js";
 import CategoryType from "./CategoryType.js";
 import AccountInfo from "./AccountInfo.js";
-// import Favorite from "./Favorite.js";
-// import Order from "./Order.js";
-// import Cart from "./Cart.js";
+import Favorite from "./Favorite.js";
+import Order from "./Order.js";
+import Cart from "./Cart.js";
 
 const models = {
   Product,
@@ -18,6 +18,9 @@ const models = {
   ProductImage,
   CategoryType,
   AccountInfo,
+  Cart,
+  Favorite,
+  Order,
 };
 
 Object.values(models).forEach((model) => {

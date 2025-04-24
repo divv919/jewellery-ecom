@@ -2,7 +2,7 @@ import models from "../models/index.js";
 
 export const getAccountInfo = async (req, res) => {
   try {
-    const result = await models.AccountInfo.findAll({
+    const result = await models.AccountInfo.findOne({
       where: { user_id: req.user.user_id },
     });
 
@@ -28,7 +28,6 @@ export const postAccountInfo = async (req, res) => {
 
 export const putAccountInfo = async (req, res) => {
   const toUpdate = req.body;
-  console.log(req.body);
   try {
     const updatedInfo = await models.AccountInfo.update(toUpdate, {
       where: { user_id: req.user.user_id },
@@ -36,6 +35,6 @@ export const putAccountInfo = async (req, res) => {
     res.status(200).json(updatedInfo);
   } catch (err) {
     console.error("Couldn't update accountInfo ");
-    res.status(500).json(err);
+    res.status(500).json(err.message);
   }
 };

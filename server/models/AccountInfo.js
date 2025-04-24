@@ -21,6 +21,8 @@ AccountInfo.init(
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      unique: true,
+
       references: {
         model: User,
         key: "user_id",

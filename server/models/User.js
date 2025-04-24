@@ -8,9 +8,9 @@ class User extends Model {
       foreignKey: "user_id",
       as: "accountInfo",
     });
-    this.belongsToMany(models.Product, { through: models.Favorite });
-    this.belongsToMany(models.Product, { through: models.Order });
-    this.belongsToMany(models.Product, { through: models.Cart });
+    // this.belongsToMany(models.Product, { through: models.Favorite });
+    // this.belongsToMany(models.Product, { through: models.Order });
+    // this.belongsToMany(models.Product, { through: models.Cart });
     this.hasMany(models.Cart, { foreignKey: "user_id" });
     this.hasMany(models.Favorite, { foreignKey: "user_id" });
     this.hasMany(models.Order, { foreignKey: "user_id" });
