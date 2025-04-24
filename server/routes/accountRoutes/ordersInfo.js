@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.get("/", ordersController.getOrders);
 // router.put();
-router.post("/:item_id", ordersController.postOrders);
+router.post("/:item_id/:quantity", ordersController.postOrders);
 // router.delete();
 export default router;

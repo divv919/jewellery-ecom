@@ -7,6 +7,6 @@ router.get("/", favoritesController.getFavorite);
 // router.put('/');
 router.post("/:item_id", favoritesController.postFavorite);
 router.delete("/:item_id", favoritesController.deleteFavorite);
-router.delete("/all", favoritesController.deleteAllFavorites);
+router.delete("/", favoritesController.deleteAllFavorites);
 
 export default router;
