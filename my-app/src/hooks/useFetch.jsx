@@ -11,7 +11,9 @@ export function useFetch(url) {
     // debugger;
     // setData([]);
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        credentials: "include",
+      });
       const dataFetched = await response.json();
       // await new Promise((resolve) => setTimeout(resolve, 10000));
       setData(dataFetched);
