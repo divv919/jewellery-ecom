@@ -16,7 +16,7 @@ function Navbar() {
       <div className="nav-container">
         <div className="navbar">
           <div className="logo" onClick={() => navigate("/")}>
-            <img src="../../public/logo2.png"></img>
+            <img src="../../public/logo.png"></img>
             <p className="logo-title">Premium Jewellery</p>
           </div>
           <div className="options">
