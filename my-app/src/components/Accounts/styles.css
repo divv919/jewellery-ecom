@@ -1,0 +1,54 @@
+.account-info-section {
+  display: flex;
+  flex-direction: row;
+  /* gap: 50px; */
+  justify-content: space-between;
+}
+
+.account-info-section p {
+  margin: 0;
+  padding: 0;
+  /* color: red; */
+  text-align: start;
+}
+
+.account-info-names {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  /* justify-content: space-between; */
+}
+.account-info-last-name {
+  display: flex;
+  flex-direction: column;
+}
+.account-info-first-name {
+  display: flex;
+  flex-direction: column;
+}
+.account-info-details {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  /* justify-content: space-between; */
+}
+
+.account-info-address {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-info-phone-number {
+  display: flex;
+  flex-direction: column;
+}
+.account-title {
+  color: #ff9d23;
+  font-size: 150%;
+  font-weight: 600;
+}
+.account-value {
+  font-size: 120%;
+  font-weight: 400;
+}
