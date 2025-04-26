@@ -8,6 +8,7 @@ export default function AccountSidebar({ data, isLoading }) {
   const location = useLocation();
   //   const params = useParams();
   console.log("Loading : ", isLoading, "data : ", data);
+
   return (
     <div className="account-section">
       <div className="account-dropdown">

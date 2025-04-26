@@ -24,11 +24,11 @@
 .account-details {
   /* background-color: red; */
 
-  height: 100%;
+  height: fit-content;
   width: 50%;
   box-sizing: border-box;
   padding: 2%;
-  height: 1400px;
+  /* height: 1400px; */
   border-radius: 4px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
