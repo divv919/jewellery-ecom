@@ -1,8 +1,9 @@
 .account-info-section {
   display: flex;
-  flex-direction: row;
-  /* gap: 50px; */
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  gap: 25px;
+  /* align-items: end; */
 }
 
 .account-info-section p {
@@ -12,11 +13,9 @@
   text-align: start;
 }
 
-.account-info-names {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  /* justify-content: space-between; */
+.account-info-details {
+  display: grid;
+  grid: 100px / auto auto;
 }
 .account-info-last-name {
   display: flex;
@@ -25,13 +24,6 @@
 .account-info-first-name {
   display: flex;
   flex-direction: column;
-}
-.account-info-details {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-
-  /* justify-content: space-between; */
 }
 
 .account-info-address {
@@ -51,4 +43,37 @@
 .account-value {
   font-size: 120%;
   font-weight: 400;
+}
+
+.account-edit-button {
+  width: fit-content;
+  font-size: 120%;
+  background-color: #fef9e1;
+  /* background-color: red; */
+  color: #ff9d23;
+  border: 0;
+  border-radius: 4px;
+  padding: 4px;
+  border: 1px solid #ff9d23;
+}
+.account-save-button {
+  width: fit-content;
+  font-size: 120%;
+  background-color: #fef9e1;
+  /* background-color: red; */
+  color: #ff9d23;
+  border: 0;
+  border-radius: 4px;
+  padding: 4px;
+  border: 1px solid #ff9d23;
+}
+
+.account-edit-button:hover {
+  background-color: #ff9d23;
+  color: #fef9e1;
+}
+
+.account-save-button:hover {
+  background-color: #ff9d23;
+  color: #fef9e1;
 }

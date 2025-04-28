@@ -49,6 +49,12 @@ Favorite.init(
     tableName: "favorites",
     timestamps: false,
     freezeTableName: true,
+    indexes: [
+      {
+        unique: true,
+        fields: ["user_id", "product_id"],
+      },
+    ],
   }
 );
 

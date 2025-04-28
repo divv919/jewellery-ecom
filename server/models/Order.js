@@ -46,6 +46,11 @@ Order.init(
       allowNull: false,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     },
+    order_status: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "Pending",
+    },
   },
   {
     sequelize,

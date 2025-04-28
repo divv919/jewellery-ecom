@@ -45,6 +45,11 @@ export default {
         allowNull: false,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
+      order_status: {
+        type: Sequelize.DataTypes.TEXT,
+        allowNull: false,
+        defaultValue: "Pending",
+      },
     });
   },
 

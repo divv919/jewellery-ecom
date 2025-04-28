@@ -2,7 +2,7 @@ import StarIcon from "@mui/icons-material/Star";
 import "./styles.css";
 import { Skeleton } from "@mui/material";
 import SkeletonImageLoader from "../../SkeletonImageLoader/SkeletonImageLoader";
-
+import formatDate from "../../../utils/formatDate";
 const ProductAllReviews = ({
   data,
   currentPage,
@@ -56,7 +56,7 @@ const ProductAllReviews = ({
               </div>
               <div>
                 <p className="user-review-created-at">
-                  {new Date(review.user.created_at).toLocaleDateString("en-IN")}
+                  {formatDate(new Date(review.user.created_at))}
                 </p>
               </div>
             </div>

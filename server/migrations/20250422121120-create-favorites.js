@@ -42,6 +42,11 @@ export default {
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
     });
+    await queryInterface.addConstraint("favorites", {
+      fields: ["user_id", "product_id"],
+      type: "unique",
+      name: "unique_user_product_favorite",
+    });
   },
 
   async down(queryInterface, Sequelize) {
@@ -51,6 +56,10 @@ export default {
      * Example:
      * await queryInterface.dropTable('users');
      */
+    await queryInterface.removeConstraint(
+      "favorites",
+      "unique_user_product_favorite"
+    );
     await queryInterface.dropTable("favorites");
   },
 };
