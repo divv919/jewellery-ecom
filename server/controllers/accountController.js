@@ -27,11 +27,15 @@ export const postAccountInfo = async (req, res) => {
 };
 
 export const putAccountInfo = async (req, res) => {
-  const toUpdate = req.body;
+  const { phone_number, ...toUpdate } = req.body;
+  console.log(phone_number);
   try {
-    const updatedInfo = await models.AccountInfo.update(toUpdate, {
-      where: { user_id: req.user.user_id },
-    });
+    const updatedInfo = await models.AccountInfo.update(
+      { phone_number: Number(phone_number), ...toUpdate },
+      {
+        where: { user_id: req.user.user_id },
+      }
+    );
     res.status(200).json(updatedInfo);
   } catch (err) {
     console.error("Couldn't update accountInfo ");

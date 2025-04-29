@@ -22,7 +22,7 @@ export default {
         onUpdate: "CASCADE",
       },
       phone_number: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.DataTypes.BIGINT,
         allowNull: true,
       },
       first_name: {

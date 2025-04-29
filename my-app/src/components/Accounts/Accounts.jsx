@@ -9,6 +9,12 @@ export default function Accounts() {
     address: "",
     phone_number: "",
   });
+
+  const [isEditing, setIsEditing] = useState(false);
+  const { data, isLoading, error, reFetch } = useFetch(
+    `http://localhost:3000/api/accounts/accountInfo`
+  );
+
   useEffect(() => {
     if (data) {
       setFormData({
@@ -19,20 +25,35 @@ export default function Accounts() {
       });
     }
   }, [data]);
-
-  const [isEditing, setIsEditing] = useState(false);
-  const { data, isLoading, error } = useFetch(
-    `http://localhost:3000/api/accounts/accountInfo`
-  );
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/accounts/accountInfo",
+        {
+          method: "PUT",
+          credentials: "include",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Error updating the accountData");
+      }
+      reFetch();
+    } catch (err) {
+      console.error(err);
+    }
     setIsEditing(false);
   };
   if (isLoading) {
     return <Skeleton />;
   }
   const handleChange = (e) => {
-    setFormData({ ...formData });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
   return (
     <>
@@ -40,13 +61,33 @@ export default function Accounts() {
         <div>
           <form className="account-info-form">
             <label for="first_name">First Name : </label>
-            <input id="first_name" name="first_name"></input>
+            <input
+              onChange={handleChange}
+              value={formData.first_name}
+              id="first_name"
+              name="first_name"
+            ></input>
             <label for="last_name">Last Name : </label>
-            <input id="last_name" name="last_name"></input>
+            <input
+              onChange={handleChange}
+              value={formData.last_name}
+              id="last_name"
+              name="last_name"
+            ></input>
             <label for="address">Address : </label>
-            <input id="address" name="address"></input>
+            <input
+              onChange={handleChange}
+              value={formData.address}
+              id="address"
+              name="address"
+            ></input>
             <label for="phone_number">Phone number : </label>
-            <input id="phone_number" name="phone_number"></input>
+            <input
+              onChange={handleChange}
+              value={formData.phone_number}
+              id="phone_number"
+              name="phone_number"
+            ></input>
             <button
               style={{ display: isEditing ? "block" : "none" }}
               className="account-save-button"

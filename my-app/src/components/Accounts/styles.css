@@ -77,3 +77,20 @@
   background-color: #ff9d23;
   color: #fef9e1;
 }
+
+.account-info-form {
+  display: flex;
+  flex-direction: column;
+  /* margin: 10px 0; */
+}
+.account-info-form input {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px 5px;
+  width: fit-content;
+  border-radius: 4px;
+}
+.account-info-form label {
+  font-size: 120%;
+  color: #ff9d23;
+}
