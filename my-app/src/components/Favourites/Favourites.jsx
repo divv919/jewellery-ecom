@@ -10,6 +10,23 @@ export default function Favourites() {
   if (isLoading) {
     return <Skeleton />;
   }
+  const handleRemove = async (item_id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/accounts/favoritesInfo/${item_id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Error removing favorite item");
+      }
+      reFetch();
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <div className="favorite-show-section">
       {data?.map((product, index) => {
@@ -21,7 +38,12 @@ export default function Favourites() {
             <div className="favorite-details">
               <p>{product.product.name}</p>
               <p>Price : {formatCurrency(product.product.price)}</p>
-              <button className="remove-button">Remove</button>
+              <button
+                className="remove-button"
+                onClick={() => handleRemove(product.product_id)}
+              >
+                Remove
+              </button>
             </div>
           </div>
         );

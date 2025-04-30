@@ -8,13 +8,40 @@ export default function () {
     `http://localhost:3000/api/accounts/cartInfo`
   );
   if (isLoading) {
-    return <Skeleton />;
+    return (
+      <div className="cart-section">
+        <div className="cart-details">
+          <div>
+            <Skeleton height={200} />
+          </div>
+          <div>
+            <Skeleton height={200} />
+          </div>
+          <div>
+            <Skeleton height={200} />
+          </div>
+        </div>
+        <div className="price-details">
+          <Skeleton height={400} />
+        </div>
+      </div>
+    );
   }
 
   const totalPrice = data.reduce(
     (sum, item) => sum + item.quantity * Number(item.product.price),
     0
   );
+  const handleQuantityChange = async (product_id, increment) => {
+    await fetch(
+      `http://localhost:3000/api/accounts/cartInfo/${product_id}/${increment}`,
+      {
+        method: "PUT",
+        credentials: "include",
+      }
+    );
+    reFetch();
+  };
   return (
     <div className="cart-section">
       <div className="cart-details">
@@ -32,9 +59,23 @@ export default function () {
                   <p> {formatCurrency(product.product.price)}</p>
                 </div>
                 <div className="product-in-cart-quantity">
-                  <button>-</button>
+                  <button
+                    className="cart-increment-button"
+                    onClick={() =>
+                      handleQuantityChange(product.product_id, false)
+                    }
+                  >
+                    -
+                  </button>
                   <p>{product.quantity}</p>
-                  <button>+</button>
+                  <button
+                    className="cart-decrement-button"
+                    onClick={() =>
+                      handleQuantityChange(product.product_id, true)
+                    }
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </div>

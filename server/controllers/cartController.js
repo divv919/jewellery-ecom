@@ -89,7 +89,7 @@ export const putCartItem = async (req, res) => {
         user_id: req.user.user_id,
       },
     });
-    if (req.params.increment) {
+    if (req.params.increment == "true") {
       const result = await models.Cart.update(
         { quantity: item.quantity + 1 },
         {
@@ -101,18 +101,26 @@ export const putCartItem = async (req, res) => {
       );
       res.status(200).json(result);
       return;
-    }
-    const result = await models.Cart.update(
-      { quantity: item.quantity - 1 },
-      {
-        where: {
-          product_id: req.params.item_id,
-          user_id: req.user.user_id,
-        },
+    } else {
+      if (item.quantity === 1) {
+        const result = await models.Cart.destroy({
+          where: { product_id: req.params.item_id, user_id: req.user.user_id },
+        });
+        res.status(200).json(result);
+        return;
       }
-    );
-    res.status(200).json(result);
-    return;
+      const result = await models.Cart.update(
+        { quantity: item.quantity - 1 },
+        {
+          where: {
+            product_id: req.params.item_id,
+            user_id: req.user.user_id,
+          },
+        }
+      );
+      res.status(200).json(result);
+      return;
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
