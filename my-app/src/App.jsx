@@ -10,7 +10,7 @@ function App() {
   const [snackBar, setSnackBar] = useState({
     message: "",
     visible: false,
-    variant: "success",
+    variant: "",
   });
   useEffect(() => {
     if (snackBar.visible) {

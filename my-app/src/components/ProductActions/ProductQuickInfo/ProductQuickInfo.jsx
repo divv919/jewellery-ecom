@@ -1,20 +1,29 @@
 import ShareIcon from "@mui/icons-material/Share";
 import "./styles.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Snackbar } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import { useContext } from "react";
 import SnackBarContext from "../../SnackBarContext/SnackBarContext";
 const ProductQuickInfo = ({ price, name, rating }) => {
   const { enableSnackBar } = useContext(SnackBarContext);
+  const handleShare = async () => {
+    const location = window.location.href;
 
+    try {
+      await navigator.clipboard.writeText(location);
+      enableSnackBar("Copied Successfully", "success");
+    } catch (err) {
+      enableSnackBar("Failed to copy", "error");
+
+      console.error(err);
+    }
+  };
   return (
     <div className="product-details-section">
       <div className="product-name">
         <h2>{name}</h2>
       </div>
       <div className="product-rating-section">
-        3
         <div className="product-rating">
           <button className="product-rating-summary">
             <p
@@ -28,10 +37,7 @@ const ProductQuickInfo = ({ price, name, rating }) => {
         </div>
         <div className="product-activity-buttons">
           <button>
-            <ShareIcon
-              onClick={() => enableSnackBar("Copied Successfully", "success")}
-              fontSize="small"
-            />
+            <ShareIcon onClick={handleShare} fontSize="small" />
           </button>
           <button>
             <FavoriteBorderIcon fontSize="small" />
