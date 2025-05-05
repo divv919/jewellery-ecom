@@ -3,9 +3,12 @@ import { prerelease, Skeleton } from "@mui/material";
 import { useFetch } from "../../../../hooks/useFetch";
 import formatCurrency from "../../../../utils/formatCurrency";
 import { useEffect, useState, useCallback, useRef } from "react";
-import Slider from "../../../Carousel/Slider";
+
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
+  const [favoriteItems, setFavoriteItems] = useState([]);
   function handleMouseClick(id) {
     navigate(`/product/${id}`);
   }
@@ -16,6 +19,9 @@ const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
   const { data, error, isLoading, reFetch } = useFetch(
     `http://localhost:3000/api/products/${params.categoryType}/${params.categoryName}?${searchParams}&page=${currentPage}`
   );
+  useEffect(() => {
+    setFavoriteItems(data?.isFavorite);
+  }, [data]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -38,6 +44,22 @@ const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
     }
   }, [data, currentPage, isLoading]);
 
+  const handleFavorite = async (event, item_id) => {
+    event.stopPropagation();
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/accounts/favoritesInfo/${item_id}`,
+        {
+          method: isProductFav(item_id) ? "DELETE" : "POST",
+          credentials: "include",
+        }
+      );
+      if (currentPage === 1) reFetch();
+      setCurrentPage(1);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const observerCallback = useCallback(
     (entries) => {
       console.log("Using callback");
@@ -104,6 +126,10 @@ const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
     );
   }
 
+  const isProductFav = (item_id) => {
+    return !!favoriteItems.find((item) => item.product_id === item_id);
+  };
+
   return (
     <>
       {productsToShow.length == 0 ? (
@@ -120,10 +146,24 @@ const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
                 onClick={() => handleMouseClick(item.id)}
                 key={item.id}
               >
+                {/* <div>Heart</div> */}
                 <div className="imgview">
                   <Image src={item.image} />
                 </div>
-
+                <div
+                  className="products-favorite-button"
+                  style={{ backgroundColor: "red" }}
+                  onClick={(e) => {
+                    console.log("clicked");
+                    handleFavorite(e, item.id);
+                  }}
+                >
+                  {isProductFav(item.id) ? (
+                    <FavoriteIcon />
+                  ) : (
+                    <FavoriteBorderIcon />
+                  )}
+                </div>
                 <p className="products-price">{formatCurrency(item.price)}</p>
                 <p className="products-name">{item.name}</p>
               </div>

@@ -68,13 +68,16 @@ export const getProducts = async (req, res) => {
         image: product.images[0]?.image_url || null,
       };
     });
-
+    const favoriteResult = await models.Favorite.findAll({
+      where: { user_id: req.user?.user_id || 0 },
+    });
     res.status(200).json({
       products: newResult,
       hasMore: count > offset + limit,
       totalItems: count,
       itemsPerPage: limit,
       currentPage: page,
+      isFavorite: favoriteResult || [],
     });
   } catch (err) {
     console.error("Error fetching products data : ", err);
