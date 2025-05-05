@@ -29,7 +29,9 @@ function App() {
     <SnackBarContext.Provider value={{ enableSnackBar }}>
       <ScrollToTop />
       <Navbar />
-      <Outlet />
+      <div style={{ minHeight: "70vh", width: "100vw" }}>
+        <Outlet />
+      </div>
       {snackBar.visible && (
         <SnackBar message={snackBar.message} variant={snackBar.variant} />
       )}

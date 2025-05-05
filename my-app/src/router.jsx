@@ -20,6 +20,7 @@ import Login from "./components/Login/Login";
 import SignUp from "./components/Signup/Signup";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { Suspense } from "react";
+import { Skeleton } from "@mui/material";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
       {
         path: "auth",
         element: (
-          <Suspense fallback={<div>Loading</div>}>
+          <Suspense fallback={<div></div>}>
             <AuthPage />
           </Suspense>
         ),

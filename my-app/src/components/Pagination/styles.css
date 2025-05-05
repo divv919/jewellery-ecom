@@ -1,0 +1,21 @@
+.pagination-container {
+  /* min-width: 50px; */
+  min-height: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  margin: 2% 0;
+}
+.page {
+  padding: 0.5% 1%;
+  background-color: inherit;
+  border: 2px solid #ff9d23;
+  border-radius: 6px;
+  /* font-size: 110%; */
+}
+.page.active,
+.page:hover {
+  background-color: #ff9d23;
+  color: white;
+}

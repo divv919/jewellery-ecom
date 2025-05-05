@@ -3,6 +3,7 @@ import "./styles.css";
 import { Skeleton } from "@mui/material";
 import SkeletonImageLoader from "../../SkeletonImageLoader/SkeletonImageLoader";
 import formatDate from "../../../utils/formatDate";
+import Pagination from "../../Pagination/Pagination";
 const ProductAllReviews = ({
   data,
   currentPage,
@@ -69,15 +70,12 @@ const ProductAllReviews = ({
           <p className="user-review-comment">{review.comment}</p>
         </div>
       ))}
-      <div
-        className="test"
-        onClick={() => {
-          setCurrentPage(currentPage === data.totalPages ? 1 : currentPage + 1);
-        }}
-      >
-        Next Page
-      </div>
-      <div className="current-page">{data.currentPage}</div>
+      <Pagination
+        totalPages={data.totalPages}
+        // totalPages={10}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };
