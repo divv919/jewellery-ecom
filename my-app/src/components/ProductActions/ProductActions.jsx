@@ -10,6 +10,8 @@ const ProductAction = ({ data, enableSnackBar }) => (
       name={data.name}
       price={data.price}
       rating={data.rating}
+      id={data.id}
+      is_favorite={data.is_favorite}
     />
   </div>
 );

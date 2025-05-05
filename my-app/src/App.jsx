@@ -29,7 +29,7 @@ function App() {
     <SnackBarContext.Provider value={{ enableSnackBar }}>
       <ScrollToTop />
       <Navbar />
-      <div style={{ minHeight: "70vh", width: "100vw" }}>
+      <div style={{ minHeight: "70vh" }}>
         <Outlet />
       </div>
       {snackBar.visible && (

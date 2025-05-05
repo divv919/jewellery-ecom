@@ -3,7 +3,9 @@ import { Skeleton } from "@mui/material";
 import { useFetch } from "../../hooks/useFetch";
 import Image from "../Image/Image";
 import formatCurrency from "../../utils/formatCurrency";
+import { useNavigate } from "react-router-dom";
 export default function () {
+  const navigate = useNavigate();
   const { data, isLoading, error, reFetch } = useFetch(
     `http://localhost:3000/api/accounts/cartInfo`
   );
@@ -48,11 +50,17 @@ export default function () {
         {data.map((product, index) => {
           return (
             <div key={index} className="product-in-cart">
-              <div className="product-in-cart-image">
+              <div
+                className="product-in-cart-image"
+                onClick={() => navigate(`/product/${product.product_id}`)}
+              >
                 <Image src={product.product.images[0].image_url} />
               </div>
               <div className="product-in-cart-details">
-                <div className="product-in-cart-name">
+                <div
+                  onClick={() => navigate(`/product/${product.product_id}`)}
+                  className="product-in-cart-name"
+                >
                   <p>{product.product.name}</p>
                 </div>
                 <div className="product-in-cart-price">

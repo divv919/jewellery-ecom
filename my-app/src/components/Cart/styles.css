@@ -7,6 +7,10 @@
   /* width : 100px; */
   background-color: rgb(245, 245, 245);
 }
+.cart-section p {
+  padding: 0;
+  margin: 0;
+}
 .cart-details {
   /* height: 750px; */
   width: 50vw;
@@ -43,7 +47,7 @@
 .product-in-cart-image {
   height: 100%;
   border: 1px solid orange;
-
+  cursor: pointer;
   width: 30%;
   border-radius: 4px;
   overflow: hidden;
@@ -63,6 +67,9 @@
   border-radius: 4px;
   padding: 2%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .product-in-cart-details {
@@ -75,6 +82,7 @@
 .product-in-cart-name p {
   font-size: 150%;
   color: orange;
+  cursor: pointer;
 }
 
 .product-in-cart-price p {
@@ -118,4 +126,8 @@
   justify-content: space-between;
   font-size: 120%;
   color: orange;
+}
+
+.cart-section button {
+  cursor: pointer;
 }

@@ -1,11 +1,17 @@
 import ShareIcon from "@mui/icons-material/Share";
 import "./styles.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import SnackBarContext from "../../SnackBarContext/SnackBarContext";
-const ProductQuickInfo = ({ price, name, rating }) => {
+import { useFetch } from "../../../hooks/useFetch";
+
+const ProductQuickInfo = ({ price, name, rating, id, is_favorite: initialIsFavorite }) => {
   const { enableSnackBar } = useContext(SnackBarContext);
+  const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
+  const { reFetch } = useFetch(`http://localhost:3000/api/productInfo/${id}`);
+
   const handleShare = async () => {
     const location = window.location.href;
 
@@ -14,10 +20,34 @@ const ProductQuickInfo = ({ price, name, rating }) => {
       enableSnackBar("Copied Successfully", "success");
     } catch (err) {
       enableSnackBar("Failed to copy", "error");
-
       console.error(err);
     }
   };
+
+  const handleFavorite = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/accounts/favoritesInfo/${id}`,
+        {
+          method: isFavorite ? "DELETE" : "POST",
+          credentials: "include",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Error updating favorite status");
+      }
+      setIsFavorite(!isFavorite);
+      reFetch();
+      enableSnackBar(
+        isFavorite ? "Removed from favorites" : "Added to favorites",
+        "success"
+      );
+    } catch (err) {
+      console.error(err);
+      enableSnackBar("Failed to update favorite status", "error");
+    }
+  };
+
   return (
     <div className="product-details-section">
       <div className="product-name">
@@ -39,8 +69,12 @@ const ProductQuickInfo = ({ price, name, rating }) => {
           <button>
             <ShareIcon onClick={handleShare} fontSize="small" />
           </button>
-          <button>
-            <FavoriteBorderIcon fontSize="small" />
+          <button onClick={handleFavorite}>
+            {isFavorite ? (
+              <FavoriteIcon fontSize="small" style={{ color: "red" }} />
+            ) : (
+              <FavoriteBorderIcon fontSize="small" />
+            )}
           </button>
         </div>
       </div>

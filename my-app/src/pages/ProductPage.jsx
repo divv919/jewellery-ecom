@@ -6,7 +6,6 @@ import ProductReviews from "../components/ProductReviews/ProductReviews";
 import ProductAction from "../components/ProductActions/ProductActions";
 import { Skeleton } from "@mui/material";
 export default function ProductPage({ enableSnackBar }) {
-  console.log(typeof enableSnackBar);
   const params = useParams();
 
   const { data, isLoading, error, reFetch } = useFetch(

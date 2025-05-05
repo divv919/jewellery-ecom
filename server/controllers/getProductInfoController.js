@@ -25,6 +25,16 @@ export default async (req, res) => {
             )`),
             "rating_count",
           ],
+          [
+            sequelize.literal(`(
+            SELECT EXISTS(
+              SELECT 1 FROM "favorites"
+              WHERE "favorites"."product_id" = "Product"."id"
+              AND "favorites"."user_id" = ${req.user?.user_id || 0}
+            )
+            )`),
+            "is_favorite",
+          ],
         ],
       },
       include: [
