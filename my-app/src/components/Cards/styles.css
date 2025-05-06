@@ -379,3 +379,6 @@ p.sort-by {
   right: 8%;
   top: 5%;
 }
+.products-favorite-button:hover {
+  color: red;
+}

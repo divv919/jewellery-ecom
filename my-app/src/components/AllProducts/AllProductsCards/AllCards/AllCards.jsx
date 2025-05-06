@@ -6,11 +6,13 @@ import { useContext, useEffect, useState, useCallback, useRef } from "react";
 import SnackBarContext from "../../../SnackBarContext/SnackBarContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useLocation } from "react-router-dom";
 const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
   const [favoriteItems, setFavoriteItems] = useState([]);
   function handleMouseClick(id) {
     navigate(`/product/${id}`);
   }
+  const location = useLocation();
 
   const { enableSnackBar } = useContext(SnackBarContext);
 
@@ -58,7 +60,8 @@ const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
       );
       if (response.status === 401) {
         enableSnackBar("Please login", "error");
-        navigate("/auth");
+        console.log(location.pathname);
+        navigate(`/auth?redirectTo=${location.pathname}${location.search}`);
         return;
       }
       if (!response.ok) {

@@ -2,7 +2,9 @@ import "./styles.css";
 const Pagination = ({ totalPages = 1, currentPage, setCurrentPage }) => {
   const getPageNumber = () => {
     const pages = [];
-    if (totalPages <= 7) {
+    if (totalPages === 1) {
+      return pages;
+    } else if (totalPages <= 7) {
       for (let i = 0; i < totalPages; i++) {
         pages.push(i + 1);
       }

@@ -1,5 +1,8 @@
 import "./styles.css";
+import { useLocation } from "react-router-dom";
 export default function Auth() {
+  const location = useLocation();
+
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -15,7 +18,7 @@ export default function Auth() {
           <button
             className="auth-card-button-google"
             onClick={() => {
-              window.location.href = "http://localhost:3000/api/auth/google";
+              window.location.href = `http://localhost:3000/api/auth/google${location.search}`;
             }}
           >
             <img

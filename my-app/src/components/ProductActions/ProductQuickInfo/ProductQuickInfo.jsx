@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import SnackBarContext from "../../SnackBarContext/SnackBarContext";
 import { useFetch } from "../../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const ProductQuickInfo = ({
   price,
   name,
@@ -14,6 +15,7 @@ const ProductQuickInfo = ({
   id,
   is_favorite: initialIsFavorite,
 }) => {
+  const location = useLocation();
   const navigate = useNavigate();
   const { enableSnackBar } = useContext(SnackBarContext);
   const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
@@ -42,7 +44,7 @@ const ProductQuickInfo = ({
       );
       if (response.status === 401) {
         enableSnackBar("Please login", "error");
-        navigate("/auth");
+        navigate(`/auth?redirectTo=${location.pathname}`);
         return;
       }
       if (!response.ok) {

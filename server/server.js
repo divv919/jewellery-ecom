@@ -55,16 +55,22 @@ app.get("/api/auth/check", (req, res) => {
   res.json({ authenticated: req.isAuthenticated(), user: req.user || null });
 });
 
-app.get(
-  "/api/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
+app.get("/api/auth/google", (req, res, next) => {
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+    state: { redirectTo: req.query.redirectTo },
+  })(req, res, next);
+});
+
 app.get(
   "/api/auth/google/cb",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:5173",
+    // successRedirect: "http://localhost:5173",
     failureRedirect: "http://localhost:5173/auth",
-  })
+  }),
+  (req, res) => {
+    res.redirect(`http://localhost:5173${req.authInfo.state.redirectTo}`);
+  }
 );
 // app.use("/api/login");
 // app.use("/api/register");
@@ -86,6 +92,7 @@ passport.use(
       callbackURL: "http://localhost:3000/api/auth/google/cb",
       scope: ["profile", "email"],
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+      store: true,
     },
     async (accessToken, refreshToken, profile, cb) => {
       try {

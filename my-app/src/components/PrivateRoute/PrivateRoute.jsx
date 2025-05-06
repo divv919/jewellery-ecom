@@ -1,10 +1,11 @@
 import { Skeleton } from "@mui/material";
 import { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 const PrivateRoute = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const location = useLocation();
+  console.log(location.pathname);
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -40,7 +41,11 @@ const PrivateRoute = ({ children }) => {
         <Skeleton variant="rectangular" width="50%" height="90%" />
       </div>
     );
-  return isAuth ? children : <Navigate to="/auth" />;
+  return isAuth ? (
+    children
+  ) : (
+    <Navigate to={`/auth?redirectTo=${location.pathname}`} />
+  );
 };
 
 export default PrivateRoute;
