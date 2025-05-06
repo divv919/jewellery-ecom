@@ -373,3 +373,9 @@ p.sort-by {
 .products-loader.inactive {
   width: 0;
 }
+
+.products-favorite-button {
+  position: absolute;
+  right: 8%;
+  top: 5%;
+}

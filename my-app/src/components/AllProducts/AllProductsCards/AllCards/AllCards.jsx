@@ -1,17 +1,19 @@
 import Image from "../../../Image/Image";
-import { prerelease, Skeleton } from "@mui/material";
+import { Skeleton } from "@mui/material";
 import { useFetch } from "../../../../hooks/useFetch";
 import formatCurrency from "../../../../utils/formatCurrency";
-import { useEffect, useState, useCallback, useRef } from "react";
-
+import { useContext, useEffect, useState, useCallback, useRef } from "react";
+import SnackBarContext from "../../../SnackBarContext/SnackBarContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-
 const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
   const [favoriteItems, setFavoriteItems] = useState([]);
   function handleMouseClick(id) {
     navigate(`/product/${id}`);
   }
+
+  const { enableSnackBar } = useContext(SnackBarContext);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [productsToShow, setProductsToShow] = useState([]);
   const loaderRef = useRef(null);
@@ -54,9 +56,24 @@ const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
           credentials: "include",
         }
       );
+      if (response.status === 401) {
+        enableSnackBar("Please login", "error");
+        navigate("/auth");
+        return;
+      }
+      if (!response.ok) {
+        throw new Error("Error updating favorite status");
+      }
+      enableSnackBar(
+        isProductFav(item_id)
+          ? "Item removed from favorites"
+          : "Item added to favorites",
+        "success"
+      );
       if (currentPage === 1) reFetch();
       setCurrentPage(1);
     } catch (err) {
+      enableSnackBar("Failed to update favorite status", "error");
       console.error(err);
     }
   };
@@ -152,14 +169,14 @@ const AllCards = ({ searchParams, setSearchParams, navigate, params }) => {
                 </div>
                 <div
                   className="products-favorite-button"
-                  style={{ backgroundColor: "red" }}
+                  // style={{ backgroundColor: "red" }}
                   onClick={(e) => {
                     console.log("clicked");
                     handleFavorite(e, item.id);
                   }}
                 >
                   {isProductFav(item.id) ? (
-                    <FavoriteIcon />
+                    <FavoriteIcon style={{ color: "red" }} />
                   ) : (
                     <FavoriteBorderIcon />
                   )}

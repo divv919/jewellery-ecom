@@ -6,8 +6,15 @@ import StarIcon from "@mui/icons-material/Star";
 import { useContext, useState } from "react";
 import SnackBarContext from "../../SnackBarContext/SnackBarContext";
 import { useFetch } from "../../../hooks/useFetch";
-
-const ProductQuickInfo = ({ price, name, rating, id, is_favorite: initialIsFavorite }) => {
+import { useNavigate } from "react-router-dom";
+const ProductQuickInfo = ({
+  price,
+  name,
+  rating,
+  id,
+  is_favorite: initialIsFavorite,
+}) => {
+  const navigate = useNavigate();
   const { enableSnackBar } = useContext(SnackBarContext);
   const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
   const { reFetch } = useFetch(`http://localhost:3000/api/productInfo/${id}`);
@@ -33,13 +40,18 @@ const ProductQuickInfo = ({ price, name, rating, id, is_favorite: initialIsFavor
           credentials: "include",
         }
       );
+      if (response.status === 401) {
+        enableSnackBar("Please login", "error");
+        navigate("/auth");
+        return;
+      }
       if (!response.ok) {
         throw new Error("Error updating favorite status");
       }
       setIsFavorite(!isFavorite);
       reFetch();
       enableSnackBar(
-        isFavorite ? "Removed from favorites" : "Added to favorites",
+        isFavorite ? "Item removed from favorites" : "Item added to favorites",
         "success"
       );
     } catch (err) {
